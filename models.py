@@ -10,6 +10,9 @@ class Event:
     timestamp: datetime
     kind: str
     message: str
+    component: str
+    level: str
+    uptime_ms: Optional[int]
     raw_line: str
 
 

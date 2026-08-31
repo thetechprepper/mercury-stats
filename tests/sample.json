@@ -1,0 +1,15 @@
+{"t":1788201349509,"up":59596,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN-2 KT7RUN"}
+{"t":1788201357352,"up":67438,"lv":"INF","c":"arq","m":"Connected to KT7RUN"}
+{"t":1788201357352,"up":67438,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
+{"t":1788201374874,"up":84961,"lv":"TMG","c":"arq-timing","m":"data_rx seq=0 bytes=22 snr_local=15.6 rx_total=22 turnaround=0ms"}
+{"t":1788201391675,"up":101761,"lv":"TMG","c":"arq-timing","m":"data_rx seq=1 bytes=80 snr_local=15.2 rx_total=102 turnaround=0ms"}
+{"t":1788201396282,"up":106368,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=22 peer_snr=8.0 local_snr=14.9 olla=+0.0 retries=0 backlog=64 startup_rem=-28930ms"}
+{"t":1788201396282,"up":106368,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 22 -> 12 (peer_snr=8.0 olla=+0.0 eff=8.0 dB, backlog=64)"}
+{"t":1788201404233,"up":114319,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 22 -> 12"}
+{"t":1788201405133,"up":115219,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC3 backlog=0 bytes=64 tx_total=64"}
+{"t":1788201413143,"up":123229,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=1 mode=DATAC3 backlog=0 bytes=3 tx_total=67"}
+{"t":1788201426073,"up":136160,"lv":"TMG","c":"arq-timing","m":"data_rx seq=2 bytes=3 snr_local=14.6 rx_total=105 turnaround=8932ms"}
+{"t":1788201426168,"up":136254,"lv":"INF","c":"tcp-ctl","m":"Command received: DISCONNECT"}
+{"t":1788201434071,"up":144158,"lv":"INF","c":"arq-fsm","m":"Disconnect finalized (peer ack)"}
+{"t":1788201434071,"up":144158,"lv":"INF","c":"arq","m":"Disconnected"}
+{"t":1788201434072,"up":144158,"lv":"TMG","c":"arq-timing","m":"disconnect reason=peer_ack tx_bytes=67 rx_bytes=105 frames_tx=2 frames_rx=3 retries=0"}

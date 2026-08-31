@@ -3,11 +3,11 @@
 A small, dependency-free terminal utility for scanning a Mercury HF JSONL
 log, finding ARQ sessions, and selecting a session from a curses interface.
 
-Mercury Stats intentionally supports **JSONL only**. Run Mercury with `-J`
-and `-L` so the log contains machine-readable records with an absolute
-timestamp.
+## Input format
 
-## Mercury example
+Mercury Stats supports **JSONL only**.
+
+Run Mercury with `-J` and `-L`:
 
 ```bash
 mercury \
@@ -18,40 +18,22 @@ mercury \
   -o plughw:1,0
 ```
 
-## Requirements
+The application uses Python's `json.loads()` to parse each JSON object.
+There is no legacy text-log parser and no regular-expression parser.
 
-- Linux
-- Python 3.10+
-- Python `curses` module (normally included with Python on Linux)
+Mercury still places event-specific details inside the JSON `m` string.
+Those known messages are interpreted with exact prefixes and
+whitespace-separated `key=value` tokens.
 
-No pip packages, database, web server, or GUI toolkit are required.
-
-## Project layout
-
-```text
-mercury-stats/
-├── mercury_stats.py
-├── parser.py
-├── metrics.py
-├── models.py
-├── README.md
-└── tests/
-    ├── sample.json
-    └── test_parser.py
-```
-
-## Run
-
-By default, the application reads:
+## Default log
 
 ```text
 ~/.local/share/emcomm-tools/mercury/session.json
 ```
 
-So normally:
+Run:
 
 ```bash
-chmod +x mercury_stats.py
 ./mercury_stats.py
 ```
 
@@ -61,64 +43,63 @@ or:
 python3 mercury_stats.py
 ```
 
-To analyze a different JSONL log:
+Specify another JSONL log if needed:
 
 ```bash
 python3 mercury_stats.py /path/to/session.json
 ```
 
-## Controls
+## Session lifecycle
 
-- `Up` / `Down` or `k` / `j`: select session
-- `Enter`: view session metrics
-- `Esc` / `Backspace`: return to session list
-- `Q`: quit
-
-## Timestamp handling
-
-Mercury's JSONL field `t` is treated as a Unix epoch timestamp in
-milliseconds. It is preserved internally as UTC and displayed in the
-computer's local timezone.
-
-The `up` field is not currently required by the baseline parser.
-
-## Current baseline metrics
-
-- Peer callsign
-- Session result
-- Start/end time
-- Session duration
-- Connection setup time when an establishment marker is present
-- Bytes observed in recognized log lines
-- Retry count
-- Mode upgrade/downgrade count
-- Initial/final mode
-- Sequence of modes seen
-
-## Session boundaries
-
-A session starts when the Mercury JSONL `m` field contains:
+A session starts with the JSON message:
 
 ```text
-CONNECT <local-callsign> <peer-callsign>
+Command received: CONNECT <local> <peer>
 ```
 
-A session ends when Mercury logs:
+`Command received: DISCONNECT` is treated only as a disconnect request.
+
+The actual session end is Mercury's:
 
 ```text
 Disconnected
 ```
 
-A bare disconnect is reported as `DISCONNECTED`; it is not assumed to mean
-that an application-level transfer succeeded.
-
-## Invalid input
-
-Legacy text `.log` files are not supported. Non-JSONL input fails with:
+The parser keeps the session open through the following timing summary:
 
 ```text
-error: Mercury Stats requires a JSONL log generated with Mercury -J.
+disconnect reason=... tx_bytes=... rx_bytes=... frames_tx=... frames_rx=... retries=...
 ```
+
+That final summary is authoritative for the final byte, frame, retry, and
+disconnect-reason counters.
+
+## Report fields
+
+- Peer
+- Result / disconnect reason
+- Start
+- Connected
+- End
+- Duration
+- Connection setup time
+- TX bytes
+- RX bytes
+- Total bytes
+- Retries
+- Connect mode
+- Payload-mode transition
+- Final TX data mode
+
+Connect mode and payload/data mode are intentionally reported separately.
+
+## Requirements
+
+- Linux
+- Python 3.10+
+- Python `curses` module
+
+No pip dependencies, database, web server, or GUI toolkit are required.
 
 ## Tests
 

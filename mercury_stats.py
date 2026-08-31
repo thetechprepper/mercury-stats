@@ -98,20 +98,34 @@ def session_list_screen(stdscr, path: Path, sessions) -> int | None:
 def detail_screen(stdscr, session) -> None:
     metrics = calculate_metrics(session)
 
+    transition_text = (
+        " | ".join(metrics.payload_transitions)
+        if metrics.payload_transitions
+        else "-"
+    )
+
     lines = [
         ("Peer", metrics.peer),
         ("Result", metrics.result),
         ("Start", display_timestamp(session.start, milliseconds=True)),
+        (
+            "Connected",
+            display_timestamp(metrics.connected_at, milliseconds=True)
+            if metrics.connected_at
+            else "-",
+        ),
         ("End", display_timestamp(session.end, milliseconds=True) if session.end else "-"),
         ("Duration", format_duration(metrics.duration_seconds)),
         ("Connection setup", format_duration(metrics.setup_seconds)),
-        ("Bytes observed", format_bytes(metrics.bytes_seen)),
-        ("Retries", str(metrics.retries)),
-        ("Mode upgrades", str(metrics.mode_upgrades)),
-        ("Mode downgrades", str(metrics.mode_downgrades)),
-        ("Initial mode", metrics.initial_mode or "-"),
-        ("Final mode", metrics.final_mode or "-"),
-        ("Modes seen", " → ".join(metrics.modes_seen) if metrics.modes_seen else "-"),
+        ("", ""),
+        ("TX bytes", format_bytes(metrics.tx_bytes)),
+        ("RX bytes", format_bytes(metrics.rx_bytes)),
+        ("Total bytes", format_bytes(metrics.total_bytes)),
+        ("Retries", str(metrics.retries) if metrics.retries is not None else "-"),
+        ("", ""),
+        ("Connect mode", metrics.connect_mode or "-"),
+        ("Payload transition", transition_text),
+        ("Final TX data mode", metrics.final_tx_mode or "-"),
     ]
 
     while True:
@@ -121,7 +135,8 @@ def detail_screen(stdscr, session) -> None:
 
         row = 3
         for label, value in lines:
-            safe_addstr(stdscr, row, 2, f"{label:<20} {value}")
+            if label:
+                safe_addstr(stdscr, row, 2, f"{label:<20} {value}")
             row += 1
 
         height, _ = stdscr.getmaxyx()
