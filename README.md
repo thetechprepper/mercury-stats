@@ -1,11 +1,22 @@
 # Mercury HF Session Analyzer
 
-A small, dependency-free terminal utility for scanning a Mercury HF log,
-finding ARQ sessions, and selecting a session from a curses interface.
+A small, dependency-free terminal utility for scanning a Mercury HF JSONL
+log, finding ARQ sessions, and selecting a session from a curses interface.
 
-This is intentionally a **baseline** project. The parser is designed around
-the Mercury CLI log patterns seen so far and keeps every raw event line so
-the metrics can be tightened as more real-world logs are tested.
+Mercury Stats intentionally supports **JSONL only**. Run Mercury with `-J`
+and `-L` so the log contains machine-readable records with an absolute
+timestamp.
+
+## Mercury example
+
+```bash
+mercury \
+  -C ~/.local/share/emcomm-tools/mercury/mercury.ini.arq \
+  -J \
+  -L ~/.local/share/emcomm-tools/mercury/session.json \
+  -i plughw:1,0 \
+  -o plughw:1,0
+```
 
 ## Requirements
 
@@ -25,7 +36,7 @@ mercury-stats/
 ├── models.py
 ├── README.md
 └── tests/
-    ├── sample.log
+    ├── sample.json
     └── test_parser.py
 ```
 
@@ -34,10 +45,10 @@ mercury-stats/
 By default, the application reads:
 
 ```text
-~/.local/share/emcomm-tools/mercury/session.log
+~/.local/share/emcomm-tools/mercury/session.json
 ```
 
-So normally you can simply run:
+So normally:
 
 ```bash
 chmod +x mercury_stats.py
@@ -50,10 +61,10 @@ or:
 python3 mercury_stats.py
 ```
 
-To analyze a different log file, pass it explicitly:
+To analyze a different JSONL log:
 
 ```bash
-python3 mercury_stats.py /path/to/mercury.log
+python3 mercury_stats.py /path/to/session.json
 ```
 
 ## Controls
@@ -62,6 +73,14 @@ python3 mercury_stats.py /path/to/mercury.log
 - `Enter`: view session metrics
 - `Esc` / `Backspace`: return to session list
 - `Q`: quit
+
+## Timestamp handling
+
+Mercury's JSONL field `t` is treated as a Unix epoch timestamp in
+milliseconds. It is preserved internally as UTC and displayed in the
+computer's local timezone.
+
+The `up` field is not currently required by the baseline parser.
 
 ## Current baseline metrics
 
@@ -76,23 +95,29 @@ python3 mercury_stats.py /path/to/mercury.log
 - Initial/final mode
 - Sequence of modes seen
 
-## Important limitation
+## Session boundaries
 
-The exact Mercury log vocabulary is still being characterized. In
-particular, byte counters, connection-establishment markers, retry wording,
-and the payload-mode ladder should be verified against additional real logs
-before treating every metric as authoritative.
-
-The parser currently starts a session when it sees:
+A session starts when the Mercury JSONL `m` field contains:
 
 ```text
 CONNECT <local-callsign> <peer-callsign>
 ```
 
-and normally closes it at:
+A session ends when Mercury logs:
 
 ```text
-DISCONNECT
+Disconnected
+```
+
+A bare disconnect is reported as `DISCONNECTED`; it is not assumed to mean
+that an application-level transfer succeeded.
+
+## Invalid input
+
+Legacy text `.log` files are not supported. Non-JSONL input fails with:
+
+```text
+error: Mercury Stats requires a JSONL log generated with Mercury -J.
 ```
 
 ## Tests

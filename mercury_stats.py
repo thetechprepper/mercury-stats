@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from metrics import calculate_metrics, format_bytes, format_duration
-from parser import parse_file
+from parser import MercuryLogError, parse_file
 
 
 APP_TITLE = "Mercury HF Session Analyzer"
@@ -36,8 +36,19 @@ def draw_header(stdscr, path: Path, session_count: int) -> int:
     return 5
 
 
+def display_timestamp(timestamp, milliseconds: bool = False) -> str:
+    if timestamp.tzinfo is not None:
+        timestamp = timestamp.astimezone()
+
+    fmt = "%Y-%m-%d %H:%M:%S.%f" if milliseconds else "%Y-%m-%d %H:%M:%S"
+    value = timestamp.strftime(fmt)
+    if milliseconds:
+        value = value[:-3]
+    return value
+
+
 def session_label(session) -> str:
-    start = session.start.strftime("%Y-%m-%d %H:%M:%S")
+    start = display_timestamp(session.start)
     duration = format_duration(session.duration_seconds)
     return f"{start:<20} {session.peer:<12} {duration:<10} {session.result}"
 
@@ -90,8 +101,8 @@ def detail_screen(stdscr, session) -> None:
     lines = [
         ("Peer", metrics.peer),
         ("Result", metrics.result),
-        ("Start", session.start.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]),
-        ("End", session.end.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] if session.end else "-"),
+        ("Start", display_timestamp(session.start, milliseconds=True)),
+        ("End", display_timestamp(session.end, milliseconds=True) if session.end else "-"),
         ("Duration", format_duration(metrics.duration_seconds)),
         ("Connection setup", format_duration(metrics.setup_seconds)),
         ("Bytes observed", format_bytes(metrics.bytes_seen)),
@@ -141,16 +152,16 @@ def run_ui(stdscr, path: Path, sessions) -> None:
 
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Scan a Mercury HF log and select ARQ sessions in a curses interface."
+        description="Scan a Mercury HF JSONL log and select ARQ sessions in a curses interface."
     )
     parser.add_argument(
         "logfile",
         nargs="?",
         type=Path,
-        default=Path("~/.local/share/emcomm-tools/mercury/session.log").expanduser(),
+        default=Path("~/.local/share/emcomm-tools/mercury/session.json").expanduser(),
         help=(
             "Path to the Mercury log file "
-            "(default: ~/.local/share/emcomm-tools/mercury/session.log)"
+            "(default: ~/.local/share/emcomm-tools/mercury/session.json)"
         ),
     )
     return parser
@@ -163,11 +174,20 @@ def main() -> int:
         print(f"error: log file not found: {args.logfile}", file=sys.stderr)
         return 2
 
-    sessions = parse_file(args.logfile)
+    try:
+        sessions = parse_file(args.logfile)
+    except (MercuryLogError, UnicodeDecodeError) as exc:
+        print(
+            "error: Mercury Stats requires a JSONL log generated with Mercury -J.",
+            file=sys.stderr,
+        )
+        print(f"detail: {exc}", file=sys.stderr)
+        return 2
+
     if not sessions:
         print(
-            "No sessions found. The baseline parser currently looks for "
-            "'CONNECT <local> <peer>' markers.",
+            "No sessions found. The parser looks for "
+            "'CONNECT <local> <peer>' in Mercury JSONL message fields.",
             file=sys.stderr,
         )
         return 1

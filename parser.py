@@ -1,23 +1,20 @@
 from __future__ import annotations
 
+import json
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
 from models import Event, Session
 
 
-TIMESTAMP_RE = re.compile(
-    r"^(?P<time>\d{2}:\d{2}:\d{2}\.\d{3})\s+\[\+(?P<offset>\d+\.\d+)s\]"
-)
-
 CONNECT_RE = re.compile(
     r"\bCONNECT\s+(?P<local>[A-Z0-9/-]+)\s+(?P<peer>[A-Z0-9/-]+)\b",
     re.IGNORECASE,
 )
 
-DISCONNECT_RE = re.compile(r"\bDISCONNECT\b", re.IGNORECASE)
+DISCONNECT_RE = re.compile(r"\bDISCONNECT(?:ED)?\b", re.IGNORECASE)
 
 PEER_RE = re.compile(
     r"\bpeer(?:\s+callsign)?\s*[:=]\s*(?P<peer>[A-Z0-9/-]+)\b",
@@ -51,40 +48,45 @@ FAIL_WORDS = (
 )
 
 
-def parse_timestamp(line: str, base_date: datetime) -> datetime | None:
-    match = TIMESTAMP_RE.search(line)
-    if not match:
+class MercuryLogError(ValueError):
+    """Raised when a Mercury JSONL log cannot be parsed."""
+
+
+def parse_json_timestamp(value: object) -> datetime | None:
+    """
+    Mercury JSONL field "t" is Unix epoch time in milliseconds.
+
+    Return an aware UTC datetime so the actual calendar date is preserved.
+    """
+    if not isinstance(value, (int, float)):
         return None
 
-    t = datetime.strptime(match.group("time"), "%H:%M:%S.%f").time()
-    return base_date.replace(
-        hour=t.hour,
-        minute=t.minute,
-        second=t.second,
-        microsecond=t.microsecond,
-    )
+    try:
+        return datetime.fromtimestamp(value / 1000.0, tz=timezone.utc)
+    except (OverflowError, OSError, ValueError):
+        return None
 
 
-def classify_event(line: str) -> str:
-    lower = line.lower()
+def classify_event(message: str) -> str:
+    lower = message.lower()
 
-    if CONNECT_RE.search(line):
+    if CONNECT_RE.search(message):
         return "connect"
-    if DISCONNECT_RE.search(line):
+    if DISCONNECT_RE.search(message):
         return "disconnect"
     if "ptt on" in lower or "tx enabled" in lower:
         return "tx"
     if "ptt off" in lower or "tx disabled" in lower:
         return "rx"
-    if MODE_RE.search(line):
+    if MODE_RE.search(message):
         if "downgrade" in lower:
             return "mode_downgrade"
         if "upgrade" in lower:
             return "mode_upgrade"
         return "mode"
-    if RETRY_RE.search(line):
+    if RETRY_RE.search(message):
         return "retry"
-    if BYTES_RE.search(line):
+    if BYTES_RE.search(message):
         return "data"
     if any(word in lower for word in FAIL_WORDS):
         return "failure"
@@ -93,53 +95,24 @@ def classify_event(line: str) -> str:
     return "other"
 
 
-def extract_peer(line: str) -> str | None:
-    match = CONNECT_RE.search(line)
+def extract_peer(message: str) -> str | None:
+    match = CONNECT_RE.search(message)
     if match:
         return match.group("peer").upper()
 
-    match = PEER_RE.search(line)
+    match = PEER_RE.search(message)
     if match:
         return match.group("peer").upper()
 
     return None
 
 
-def parse_lines(lines: Iterable[str], base_date: datetime | None = None) -> list[Session]:
-    """
-    Parse Mercury log lines into coarse ARQ sessions.
-
-    Baseline behavior:
-      * A line containing 'CONNECT <local> <peer>' starts a session.
-      * A line containing 'DISCONNECT' ends the current session.
-      * Events between those markers are retained for metrics.
-      * If a second CONNECT is seen before DISCONNECT, the previous
-        session is closed immediately before the new session begins.
-
-    Mercury's exact log wording may evolve. The parser intentionally keeps
-    the raw line for every event so patterns can be tightened later without
-    losing information.
-    """
-    if base_date is None:
-        base_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-
+def _parse_events(events: Iterable[tuple[datetime, str, str]]) -> list[Session]:
     sessions: list[Session] = []
     current: Session | None = None
-    last_timestamp: datetime | None = None
 
-    for raw in lines:
-        line = raw.rstrip("\n")
-        timestamp = parse_timestamp(line, base_date)
-        if timestamp is None:
-            continue
-
-        # Handle midnight rollover for logs spanning more than one day.
-        if last_timestamp and timestamp < last_timestamp - timedelta(hours=12):
-            base_date = base_date + timedelta(days=1)
-            timestamp = parse_timestamp(line, base_date)
-        last_timestamp = timestamp
-
-        connect_match = CONNECT_RE.search(line)
+    for timestamp, message, raw_line in events:
+        connect_match = CONNECT_RE.search(message)
         if connect_match:
             if current is not None:
                 current.end = timestamp
@@ -152,25 +125,25 @@ def parse_lines(lines: Iterable[str], base_date: datetime | None = None) -> list
                 start=timestamp,
             )
             current.events.append(
-                Event(timestamp, "connect", line, line)
+                Event(timestamp, "connect", message, raw_line)
             )
             continue
 
         if current is None:
             continue
 
-        kind = classify_event(line)
-        current.events.append(Event(timestamp, kind, line, line))
+        kind = classify_event(message)
+        current.events.append(Event(timestamp, kind, message, raw_line))
 
         if kind == "failure":
             current.result = "FAILED"
         elif kind == "success":
             current.result = "SUCCESS"
 
-        if DISCONNECT_RE.search(line):
+        if DISCONNECT_RE.search(message):
             current.end = timestamp
             if current.result == "UNKNOWN":
-                current.result = "SUCCESS"
+                current.result = "DISCONNECTED"
             sessions.append(current)
             current = None
 
@@ -183,7 +156,54 @@ def parse_lines(lines: Iterable[str], base_date: datetime | None = None) -> list
     return sessions
 
 
+def parse_json_lines(lines: Iterable[str]) -> list[Session]:
+    normalized: list[tuple[datetime, str, str]] = []
+    saw_nonempty = False
+    saw_valid_json_record = False
+
+    for line_number, raw in enumerate(lines, start=1):
+        line = raw.strip()
+        if not line:
+            continue
+
+        saw_nonempty = True
+
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise MercuryLogError(
+                f"line {line_number}: invalid JSONL ({exc.msg})"
+            ) from exc
+
+        if not isinstance(record, dict):
+            raise MercuryLogError(
+                f"line {line_number}: expected a JSON object"
+            )
+
+        saw_valid_json_record = True
+
+        timestamp = parse_json_timestamp(record.get("t"))
+        message = record.get("m")
+
+        if timestamp is None:
+            raise MercuryLogError(
+                f"line {line_number}: missing or invalid Mercury 't' timestamp"
+            )
+
+        if not isinstance(message, str):
+            raise MercuryLogError(
+                f"line {line_number}: missing or invalid Mercury 'm' message"
+            )
+
+        normalized.append((timestamp, message, line))
+
+    if saw_nonempty and not saw_valid_json_record:
+        raise MercuryLogError("no valid Mercury JSONL records found")
+
+    return _parse_events(normalized)
+
+
 def parse_file(path: str | Path) -> list[Session]:
     path = Path(path)
-    with path.open("r", encoding="utf-8", errors="replace") as fh:
-        return parse_lines(fh)
+    with path.open("r", encoding="utf-8", errors="strict") as fh:
+        return parse_json_lines(fh)
