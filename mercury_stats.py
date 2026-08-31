@@ -8,6 +8,7 @@ from pathlib import Path
 
 from metrics import ARQ_MODE_LEGEND, calculate_metrics, format_bytes, format_duration
 from parser import MercuryLogError, parse_file
+from version import __version__
 
 
 APP_TITLE = "Mercury HF Session Analyzer"
@@ -229,6 +230,11 @@ def run_ui(stdscr, path: Path, sessions) -> None:
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Scan a Mercury HF JSONL log and select ARQ sessions in a curses interface."
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"mercury-stats {__version__}",
     )
     parser.add_argument(
         "logfile",

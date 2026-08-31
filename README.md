@@ -157,6 +157,39 @@ match the data quantities reported in Mercury timing records such as
 Source:
 https://github.com/Rhizomatica/mercury/blob/mercuryv2/mercury.1
 
+
+## Version
+
+The application version is defined in one place:
+
+```text
+version.py
+```
+
+Example:
+
+```python
+__version__ = "0.1.0"
+```
+
+Display the installed version with:
+
+```bash
+et-mercury-stats --version
+```
+
+or when running directly from the source tree:
+
+```bash
+python3 mercury_stats.py --version
+```
+
+Output:
+
+```text
+mercury-stats 0.1.0
+```
+
 ## Requirements
 
 - Linux

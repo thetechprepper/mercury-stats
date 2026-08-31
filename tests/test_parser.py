@@ -9,6 +9,7 @@ sys.path.insert(0, str(ROOT))
 
 from metrics import ARQ_MODE_LEGEND, FREEDV_MODE_NAMES, calculate_metrics, format_bytes, mode_name
 from parser import MercuryLogError, parse_file, parse_json_timestamp
+from version import __version__
 
 
 class JsonParserTests(unittest.TestCase):
@@ -107,6 +108,9 @@ class JsonParserTests(unittest.TestCase):
         self.assertEqual(format_bytes(9679), "9679 B (9.45 KiB)")
         self.assertEqual(format_bytes(110), "110 B")
         self.assertEqual(format_bytes(9789), "9789 B (9.56 KiB)")
+
+    def test_version(self):
+        self.assertEqual(__version__, "0.1.0")
 
     def test_legacy_text_is_rejected(self):
         with tempfile.NamedTemporaryFile("w", encoding="utf-8", delete=False) as fh:
