@@ -194,7 +194,7 @@ def format_bytes(count: int | None) -> str:
         return "-"
 
     if count >= 1024 * 1024:
-        return f"{count / (1024 * 1024):.2f} MiB"
+        return f"{count} B ({count / (1024 * 1024):.2f} MiB)"
     if count >= 1024:
-        return f"{count / 1024:.2f} KiB"
+        return f"{count} B ({count / 1024:.2f} KiB)"
     return f"{count} B"

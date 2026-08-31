@@ -141,17 +141,18 @@ def _parse_events(events: Iterable[Event]) -> list[Session]:
             current.end = event.timestamp
             if current.result == "UNKNOWN":
                 current.result = "DISCONNECTED"
-            continue
-
-        # Keep the session open through the final timing summary so its
-        # authoritative counters remain part of the session.
-        if event.kind == "disconnect_summary":
-            if current.end is None:
-                current.end = event.timestamp
-            if current.result == "UNKNOWN":
-                current.result = "DISCONNECTED"
             sessions.append(current)
             current = None
+            continue
+
+        # Disconnect summary contains authoritative counters/reason, but it
+        # does not define the actual end of the session. Mercury may emit the
+        # summary before or after "Disconnected", so only "Disconnected"
+        # terminates the session.
+        if event.kind == "disconnect_summary":
+            if current.result == "UNKNOWN":
+                current.result = "DISCONNECTED"
+            continue
 
     if current is not None:
         fallback_end = current.events[-1].timestamp if current.events else current.start

@@ -65,14 +65,16 @@ The actual session end is Mercury's:
 Disconnected
 ```
 
-The parser keeps the session open through the following timing summary:
+The parser records the following timing summary whenever it appears:
 
 ```text
 disconnect reason=... tx_bytes=... rx_bytes=... frames_tx=... frames_rx=... retries=...
 ```
 
-That final summary is authoritative for the final byte, frame, retry, and
-disconnect-reason counters.
+That summary is authoritative for the final byte, frame, retry, and
+disconnect-reason counters. The session itself ends only at Mercury's
+`Disconnected` event, regardless of whether the summary appears before
+or after it.
 
 ## Report fields
 
@@ -88,7 +90,7 @@ disconnect-reason counters.
 - Total bytes
 - Retries
 - Connect mode
-- Payload-mode transition
+- Payload-mode transitions
 - Final TX data mode
 
 Connect mode and payload/data mode are intentionally reported separately.

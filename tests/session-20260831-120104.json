@@ -1,0 +1,285 @@
+{"t":1788201289913,"up":0,"lv":"INF","c":"main","m":"Async logger initialized (min_level=INFO)"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"ARQ no-progress timeout: 180s"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"ARQ disconnect drain timeout: 30s"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"Data retry slots: 10"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"mode_hold_after_downgrade_s = 6"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"ladder_up_successes = 2"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"retry_downgrade_threshold = 2"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"channel_guard_ms = 700"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"iss_post_ack_guard_ms = 900"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"keepalive_interval_s = 20"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"keepalive_miss_limit = 5"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"peer_payload_hold_s = 8"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"arq","m":"startup_max_s = 10"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"engine","m":"Logger initialised (min_level=INFO)"}
+{"t":1788201289913,"up":0,"lv":"INF","c":"engine","m":"Initialising audio I/O (subsystem=0)"}
+{"t":1788201289915,"up":2,"lv":"INF","c":"radio-io","m":"Initializing radio (type=2, device=127.0.0.1:4532, hamlib_log_level=0, serial_speed=0)"}
+{"t":1788201289918,"up":4,"lv":"INF","c":"audio-play","m":"I/O playback (plughw:1,0 'USB Audio Device USB Audio') int32 / 48000Hz / 2ch / 30ms buffer"}
+{"t":1788201289919,"up":5,"lv":"INF","c":"audio-cap","m":"I/O capture (plughw:1,0 'USB Audio Device USB Audio') int32 / 48000Hz / 2ch / 30ms buffer"}
+{"t":1788201290042,"up":129,"lv":"INF","c":"radio-io","m":"Radio control: HAMLIB (model 2, device 127.0.0.1:4532)"}
+{"t":1788201290042,"up":129,"lv":"INF","c":"radio-io","m":"hamlib runtime: Hamlib 4.5 Sat Oct 29 23:39:41 2022 +0000 SHA=58f9fd"}
+{"t":1788201290042,"up":129,"lv":"INF","c":"engine","m":"Initialising modem (mode=12)"}
+{"t":1788201290042,"up":129,"lv":"INF","c":"modem","m":"Created data buffers for ARQ and BROADCAST datalink, tx/rx paths."}
+{"t":1788201290052,"up":138,"lv":"INF","c":"modem","m":"Initialized persistent FreeDV mode pool (DATAC16/DATAC15/DATAC13/DATAC4/DATAC3/DATAC1/DATAC17/QAM16C2), frames per burst: 1"}
+{"t":1788201290052,"up":138,"lv":"INF","c":"modem","m":"Active FreeDV mode at startup: 12 (DATAC3), verbosity: 0"}
+{"t":1788201290052,"up":138,"lv":"INF","c":"modem","m":"Modem expects sample rate: 8000 Hz"}
+{"t":1788201290052,"up":138,"lv":"INF","c":"modem","m":"Modem payload bytes per frame: 126"}
+{"t":1788201290052,"up":138,"lv":"INF","c":"modem","m":"Split control/data mode switching: ENABLED"}
+{"t":1788201290052,"up":138,"lv":"INF","c":"arq-bus","m":"Initialized channel bus"}
+{"t":1788201290053,"up":139,"lv":"INF","c":"arq","m":"ARQ initialized (frame=126 mode=12)"}
+{"t":1788201290053,"up":139,"lv":"INF","c":"bcast","m":"Starting broadcast system..."}
+{"t":1788201290053,"up":139,"lv":"INF","c":"bcast","m":"Broadcast frame alignment OK (FreeDV mode 12, hermes mode 1): 126 bytes."}
+{"t":1788201290053,"up":139,"lv":"INF","c":"engine","m":"Initialising TCP interfaces (arq=8300, bc=8100)"}
+{"t":1788201290053,"up":139,"lv":"INF","c":"arq","m":"Event loop started"}
+{"t":1788201290053,"up":139,"lv":"INF","c":"tcp-ctl","m":"Listening on TCP port 8300"}
+{"t":1788201290053,"up":139,"lv":"INF","c":"tcp-data","m":"Listening on TCP port 8301"}
+{"t":1788201290053,"up":139,"lv":"INF","c":"engine","m":"UI communication disabled"}
+{"t":1788201290053,"up":139,"lv":"INF","c":"engine","m":"Mercury engine initialised"}
+{"t":1788201290053,"up":140,"lv":"INF","c":"tcp-bcast","m":"Waiting for a client to connect..."}
+{"t":1788201292113,"up":2200,"lv":"INF","c":"tcp-ctl","m":"Control client connected"}
+{"t":1788201292114,"up":2200,"lv":"INF","c":"tcp-data","m":"Data client connected"}
+{"t":1788201292114,"up":2200,"lv":"INF","c":"tcp-ctl","m":"Command received: PUBLIC ON"}
+{"t":1788201292114,"up":2201,"lv":"INF","c":"tcp-ctl","m":"Command received: CWID ON"}
+{"t":1788201292114,"up":2201,"lv":"WRN","c":"tcp-ctl","m":"Unknown command: CWID ON"}
+{"t":1788201292114,"up":2201,"lv":"INF","c":"tcp-ctl","m":"Command received: COMPRESSION TEXT"}
+{"t":1788201292114,"up":2201,"lv":"INF","c":"tcp-ctl","m":"Command received: MYCALL KT7RUN-2"}
+{"t":1788201292114,"up":2201,"lv":"INF","c":"tcp-ctl","m":"Command received: LISTEN OFF"}
+{"t":1788201292114,"up":2201,"lv":"INF","c":"arq","m":"My callsign: KT7RUN-2"}
+{"t":1788201292114,"up":2201,"lv":"INF","c":"tcp-ctl","m":"Command received: VERSION"}
+{"t":1788201292115,"up":2201,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
+{"t":1788201292115,"up":2201,"lv":"INF","c":"tcp-ctl","m":"Command received: LISTEN ON"}
+{"t":1788201349509,"up":59596,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
+{"t":1788201349509,"up":59596,"lv":"INF","c":"tcp-ctl","m":"Command received: WINLINK SESSION"}
+{"t":1788201349509,"up":59596,"lv":"WRN","c":"tcp-ctl","m":"Unknown command: WINLINK SESSION"}
+{"t":1788201349509,"up":59596,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN-2 KT7RUN"}
+{"t":1788201349548,"up":59634,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201353360,"up":63447,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201357352,"up":67438,"lv":"INF","c":"arq","m":"Connected to KT7RUN"}
+{"t":1788201357352,"up":67438,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
+{"t":1788201358266,"up":68352,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201362077,"up":72163,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201365435,"up":75522,"lv":"TMG","c":"arq-timing","m":"turn dir=→IRS reason=turn_req"}
+{"t":1788201366147,"up":76233,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201369958,"up":80044,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201374874,"up":84961,"lv":"TMG","c":"arq-timing","m":"data_rx seq=0 bytes=22 snr_local=15.6 rx_total=22 turnaround=0ms"}
+{"t":1788201375574,"up":85661,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=0 delay_from_rx=700ms"}
+{"t":1788201375611,"up":85697,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201379423,"up":89509,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201382778,"up":92865,"lv":"INF","c":"arq-fsm","m":"MODE_REQ: peer TX mode 22 -> 12 (my TX mode 22 unchanged)"}
+{"t":1788201383512,"up":93599,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201387324,"up":97410,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201391675,"up":101761,"lv":"TMG","c":"arq-timing","m":"data_rx seq=1 bytes=80 snr_local=15.2 rx_total=102 turnaround=0ms"}
+{"t":1788201392374,"up":102461,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=1 delay_from_rx=700ms"}
+{"t":1788201392470,"up":102556,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201396282,"up":106368,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201396282,"up":106368,"lv":"TMG","c":"arq-timing","m":"turn dir=→ISS reason=piggyback"}
+{"t":1788201396282,"up":106368,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=22 peer_snr=8.0 local_snr=14.9 olla=+0.0 retries=0 backlog=64 startup_rem=-28930ms"}
+{"t":1788201396282,"up":106368,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 22 -> 12 (peer_snr=8.0 olla=+0.0 eff=8.0 dB, backlog=64)"}
+{"t":1788201396416,"up":106503,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201400228,"up":110314,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201404233,"up":114319,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 22 -> 12"}
+{"t":1788201404233,"up":114319,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=12 peer_snr=8.0 local_snr=14.9 olla=+0.0 retries=0 backlog=64 startup_rem=-36881ms"}
+{"t":1788201405133,"up":115219,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC3 backlog=0 bytes=64 tx_total=64"}
+{"t":1788201405154,"up":115240,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201405154,"up":115240,"lv":"TMG","c":"arq-timing","m":"tx_start seq=1 mode=DATAC3 backlog=0"}
+{"t":1788201409076,"up":119162,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201409076,"up":119162,"lv":"TMG","c":"arq-timing","m":"tx_end seq=1 dur=3922ms"}
+{"t":1788201413088,"up":123175,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=0 rtt=7235ms peer_delay=700ms snr_peer=10.0"}
+{"t":1788201413143,"up":123229,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=1 mode=DATAC3 backlog=0 bytes=3 tx_total=67"}
+{"t":1788201413221,"up":123307,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201413221,"up":123307,"lv":"TMG","c":"arq-timing","m":"tx_start seq=2 mode=DATAC3 backlog=0"}
+{"t":1788201417142,"up":127228,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201417142,"up":127228,"lv":"TMG","c":"arq-timing","m":"tx_end seq=2 dur=3921ms"}
+{"t":1788201421174,"up":131260,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=1 rtt=7253ms peer_delay=700ms snr_peer=11.0"}
+{"t":1788201421174,"up":131260,"lv":"TMG","c":"arq-timing","m":"turn dir=→IRS reason=piggyback"}
+{"t":1788201426073,"up":136160,"lv":"TMG","c":"arq-timing","m":"data_rx seq=2 bytes=3 snr_local=14.6 rx_total=105 turnaround=8932ms"}
+{"t":1788201426168,"up":136254,"lv":"INF","c":"tcp-ctl","m":"Command received: DISCONNECT"}
+{"t":1788201426212,"up":136298,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
+{"t":1788201426901,"up":136988,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788201430713,"up":140800,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788201434071,"up":144158,"lv":"INF","c":"arq-fsm","m":"Disconnect finalized (peer ack)"}
+{"t":1788201434071,"up":144158,"lv":"INF","c":"arq","m":"Disconnected"}
+{"t":1788201434072,"up":144158,"lv":"TMG","c":"arq-timing","m":"disconnect reason=peer_ack tx_bytes=67 rx_bytes=105 frames_tx=2 frames_rx=3 retries=0"}
+{"t":1788201434126,"up":144213,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
+{"t":1788202864498,"up":1574584,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
+{"t":1788202864498,"up":1574584,"lv":"INF","c":"tcp-ctl","m":"Command received: WINLINK SESSION"}
+{"t":1788202864498,"up":1574584,"lv":"WRN","c":"tcp-ctl","m":"Unknown command: WINLINK SESSION"}
+{"t":1788202864498,"up":1574584,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN-2 KT7RUN"}
+{"t":1788202864534,"up":1574620,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202868345,"up":1578432,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202872337,"up":1582423,"lv":"INF","c":"arq","m":"Connected to KT7RUN"}
+{"t":1788202872337,"up":1582423,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
+{"t":1788202873250,"up":1583336,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202877061,"up":1587148,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202880460,"up":1590546,"lv":"TMG","c":"arq-timing","m":"turn dir=→IRS reason=turn_req"}
+{"t":1788202881175,"up":1591261,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202884987,"up":1595074,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202889917,"up":1600003,"lv":"TMG","c":"arq-timing","m":"data_rx seq=0 bytes=22 snr_local=15.4 rx_total=22 turnaround=0ms"}
+{"t":1788202890617,"up":1600703,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=0 delay_from_rx=700ms"}
+{"t":1788202890641,"up":1600728,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202894453,"up":1604539,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202897805,"up":1607892,"lv":"INF","c":"arq-fsm","m":"MODE_REQ: peer TX mode 22 -> 12 (my TX mode 22 unchanged)"}
+{"t":1788202898534,"up":1608621,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202902346,"up":1612432,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202906733,"up":1616819,"lv":"TMG","c":"arq-timing","m":"data_rx seq=1 bytes=80 snr_local=15.2 rx_total=102 turnaround=0ms"}
+{"t":1788202907433,"up":1617519,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=1 delay_from_rx=700ms"}
+{"t":1788202907486,"up":1617572,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202911298,"up":1621384,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202911298,"up":1621384,"lv":"TMG","c":"arq-timing","m":"turn dir=→ISS reason=piggyback"}
+{"t":1788202911298,"up":1621384,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=22 peer_snr=9.0 local_snr=14.9 olla=+0.0 retries=0 backlog=96 startup_rem=-28961ms"}
+{"t":1788202911298,"up":1621384,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 22 -> 12 (peer_snr=9.0 olla=+0.0 eff=9.0 dB, backlog=96)"}
+{"t":1788202911446,"up":1621532,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202915256,"up":1625342,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202919252,"up":1629338,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 22 -> 12"}
+{"t":1788202919252,"up":1629338,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=12 peer_snr=9.0 local_snr=14.9 olla=+0.0 retries=0 backlog=96 startup_rem=-36915ms"}
+{"t":1788202920152,"up":1630238,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC3 backlog=0 bytes=96 tx_total=96"}
+{"t":1788202920193,"up":1630279,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202920193,"up":1630279,"lv":"TMG","c":"arq-timing","m":"tx_start seq=1 mode=DATAC3 backlog=0"}
+{"t":1788202924114,"up":1634201,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202924114,"up":1634201,"lv":"TMG","c":"arq-timing","m":"tx_end seq=1 dur=3922ms"}
+{"t":1788202928089,"up":1638175,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=0 rtt=7196ms peer_delay=700ms snr_peer=10.0"}
+{"t":1788202928128,"up":1638215,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=1 mode=DATAC3 backlog=0 bytes=6 tx_total=102"}
+{"t":1788202928145,"up":1638232,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202928145,"up":1638232,"lv":"TMG","c":"arq-timing","m":"tx_start seq=2 mode=DATAC3 backlog=0"}
+{"t":1788202932066,"up":1642153,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202932067,"up":1642153,"lv":"TMG","c":"arq-timing","m":"tx_end seq=2 dur=3921ms"}
+{"t":1788202936093,"up":1646179,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=1 rtt=7247ms peer_delay=700ms snr_peer=11.0"}
+{"t":1788202936093,"up":1646179,"lv":"TMG","c":"arq-timing","m":"turn dir=→IRS reason=piggyback"}
+{"t":1788202941016,"up":1651103,"lv":"TMG","c":"arq-timing","m":"data_rx seq=2 bytes=5 snr_local=15.4 rx_total=107 turnaround=8950ms"}
+{"t":1788202941717,"up":1651803,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=2 delay_from_rx=700ms"}
+{"t":1788202941820,"up":1651906,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202945631,"up":1655717,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202945631,"up":1655717,"lv":"TMG","c":"arq-timing","m":"turn dir=→ISS reason=piggyback"}
+{"t":1788202945631,"up":1655717,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=12 peer_snr=11.0 local_snr=15.0 olla=+0.9 retries=0 backlog=1287 startup_rem=-63294ms"}
+{"t":1788202945631,"up":1655717,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 12 -> 10 (peer_snr=11.0 olla=+0.9 eff=11.9 dB, backlog=1287)"}
+{"t":1788202945765,"up":1655851,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202949576,"up":1659662,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202953577,"up":1663663,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 12 -> 10"}
+{"t":1788202953577,"up":1663663,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=10 peer_snr=11.0 local_snr=15.0 olla=+0.9 retries=0 backlog=1287 startup_rem=-71240ms"}
+{"t":1788202954476,"up":1664563,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=2 mode=DATAC1 backlog=785 bytes=502 tx_total=604"}
+{"t":1788202954592,"up":1664679,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202954593,"up":1664679,"lv":"TMG","c":"arq-timing","m":"tx_start seq=3 mode=DATAC1 backlog=785"}
+{"t":1788202959504,"up":1669590,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202959504,"up":1669590,"lv":"TMG","c":"arq-timing","m":"tx_end seq=3 dur=4911ms"}
+{"t":1788202963496,"up":1673582,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=2 rtt=8203ms peer_delay=700ms snr_peer=11.0"}
+{"t":1788202963496,"up":1673582,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=10 peer_snr=11.0 local_snr=15.0 olla=+1.3 retries=0 backlog=785 startup_rem=-81159ms"}
+{"t":1788202963496,"up":1673582,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 10 -> 24 (peer_snr=11.0 olla=+1.3 eff=12.3 dB, backlog=785)"}
+{"t":1788202963540,"up":1673627,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202967352,"up":1677438,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202971362,"up":1681449,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 10 -> 24"}
+{"t":1788202971362,"up":1681449,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=11.0 local_snr=15.2 olla=+1.3 retries=0 backlog=912 startup_rem=-89026ms"}
+{"t":1788202972263,"up":1682349,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=3 mode=DATAC17 backlog=0 bytes=912 tx_total=1516"}
+{"t":1788202972479,"up":1682566,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202972479,"up":1682566,"lv":"TMG","c":"arq-timing","m":"tx_start seq=4 mode=DATAC17 backlog=0"}
+{"t":1788202979921,"up":1690008,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202979921,"up":1690008,"lv":"TMG","c":"arq-timing","m":"tx_end seq=4 dur=7442ms"}
+{"t":1788202983923,"up":1694010,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=3 rtt=10744ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788202983938,"up":1694025,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=4 mode=DATAC17 backlog=0 bytes=254 tx_total=1770"}
+{"t":1788202983991,"up":1694077,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202983991,"up":1694077,"lv":"TMG","c":"arq-timing","m":"tx_start seq=5 mode=DATAC17 backlog=1143"}
+{"t":1788202991433,"up":1701519,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788202991433,"up":1701519,"lv":"TMG","c":"arq-timing","m":"tx_end seq=5 dur=7442ms"}
+{"t":1788202995465,"up":1705552,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=4 rtt=10775ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788202995465,"up":1705552,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=12.0 local_snr=15.6 olla=+2.1 retries=0 backlog=1143 startup_rem=-113129ms"}
+{"t":1788202996366,"up":1706452,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=5 mode=DATAC17 backlog=0 bytes=1143 tx_total=2913"}
+{"t":1788202996493,"up":1706579,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788202996493,"up":1706579,"lv":"TMG","c":"arq-timing","m":"tx_start seq=6 mode=DATAC17 backlog=0"}
+{"t":1788203003934,"up":1714020,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203003934,"up":1714020,"lv":"TMG","c":"arq-timing","m":"tx_end seq=6 dur=7441ms"}
+{"t":1788203007947,"up":1718033,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=5 rtt=10754ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203007986,"up":1718072,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=6 mode=DATAC17 backlog=0 bytes=254 tx_total=3167"}
+{"t":1788203008089,"up":1718175,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203008089,"up":1718175,"lv":"TMG","c":"arq-timing","m":"tx_start seq=7 mode=DATAC17 backlog=1143"}
+{"t":1788203015530,"up":1725617,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203015530,"up":1725617,"lv":"TMG","c":"arq-timing","m":"tx_end seq=7 dur=7442ms"}
+{"t":1788203019550,"up":1729636,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=6 rtt=10761ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788203019550,"up":1729636,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=12.0 local_snr=15.1 olla=+3.0 retries=0 backlog=1143 startup_rem=-137213ms"}
+{"t":1788203020450,"up":1730536,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=7 mode=DATAC17 backlog=0 bytes=1143 tx_total=4310"}
+{"t":1788203020594,"up":1730681,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203020594,"up":1730681,"lv":"TMG","c":"arq-timing","m":"tx_start seq=8 mode=DATAC17 backlog=0"}
+{"t":1788203028036,"up":1738123,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203028037,"up":1738123,"lv":"TMG","c":"arq-timing","m":"tx_end seq=8 dur=7442ms"}
+{"t":1788203032072,"up":1742159,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=7 rtt=10778ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203032133,"up":1742220,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=8 mode=DATAC17 backlog=0 bytes=508 tx_total=4818"}
+{"t":1788203032200,"up":1742287,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203032200,"up":1742287,"lv":"TMG","c":"arq-timing","m":"tx_start seq=9 mode=DATAC17 backlog=635"}
+{"t":1788203039642,"up":1749728,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203039642,"up":1749728,"lv":"TMG","c":"arq-timing","m":"tx_end seq=9 dur=7441ms"}
+{"t":1788203043677,"up":1753763,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=8 rtt=10776ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203043677,"up":1753763,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=15.0 olla=+3.0 retries=0 backlog=635 startup_rem=-161340ms"}
+{"t":1788203044576,"up":1754663,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=9 mode=DATAC17 backlog=0 bytes=889 tx_total=5707"}
+{"t":1788203044711,"up":1754797,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203044711,"up":1754797,"lv":"TMG","c":"arq-timing","m":"tx_start seq=10 mode=DATAC17 backlog=0"}
+{"t":1788203052152,"up":1762239,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203052153,"up":1762239,"lv":"TMG","c":"arq-timing","m":"tx_end seq=10 dur=7442ms"}
+{"t":1788203056155,"up":1766242,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=9 rtt=10745ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203056184,"up":1766270,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=10 mode=DATAC17 backlog=0 bytes=254 tx_total=5961"}
+{"t":1788203056241,"up":1766327,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203056241,"up":1766327,"lv":"TMG","c":"arq-timing","m":"tx_start seq=11 mode=DATAC17 backlog=1016"}
+{"t":1788203063683,"up":1773770,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203063683,"up":1773770,"lv":"TMG","c":"arq-timing","m":"tx_end seq=11 dur=7443ms"}
+{"t":1788203067721,"up":1777808,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=10 rtt=10781ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203067721,"up":1777808,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=14.7 olla=+3.0 retries=0 backlog=1016 startup_rem=-185385ms"}
+{"t":1788203068621,"up":1778708,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=11 mode=DATAC17 backlog=0 bytes=1016 tx_total=6977"}
+{"t":1788203068748,"up":1778835,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203068748,"up":1778835,"lv":"TMG","c":"arq-timing","m":"tx_start seq=12 mode=DATAC17 backlog=0"}
+{"t":1788203076190,"up":1786276,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203076190,"up":1786276,"lv":"TMG","c":"arq-timing","m":"tx_end seq=12 dur=7441ms"}
+{"t":1788203080223,"up":1790310,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=11 rtt=10775ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203080232,"up":1790319,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=12 mode=DATAC17 backlog=0 bytes=508 tx_total=7485"}
+{"t":1788203080335,"up":1790421,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203080335,"up":1790421,"lv":"TMG","c":"arq-timing","m":"tx_start seq=13 mode=DATAC17 backlog=635"}
+{"t":1788203087776,"up":1797862,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203087776,"up":1797863,"lv":"TMG","c":"arq-timing","m":"tx_end seq=13 dur=7442ms"}
+{"t":1788203091784,"up":1801871,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=12 rtt=10750ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203091784,"up":1801871,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=13.9 olla=+3.0 retries=0 backlog=635 startup_rem=-209448ms"}
+{"t":1788203092684,"up":1802771,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=13 mode=DATAC17 backlog=0 bytes=889 tx_total=8374"}
+{"t":1788203092741,"up":1802827,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203092741,"up":1802827,"lv":"TMG","c":"arq-timing","m":"tx_start seq=14 mode=DATAC17 backlog=0"}
+{"t":1788203100183,"up":1810270,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203100183,"up":1810270,"lv":"TMG","c":"arq-timing","m":"tx_end seq=14 dur=7443ms"}
+{"t":1788203104184,"up":1814270,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=13 rtt=10743ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203104279,"up":1814366,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=14 mode=DATAC17 backlog=0 bytes=254 tx_total=8628"}
+{"t":1788203104342,"up":1814429,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203104342,"up":1814429,"lv":"TMG","c":"arq-timing","m":"tx_start seq=15 mode=DATAC17 backlog=1016"}
+{"t":1788203111784,"up":1821870,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203111784,"up":1821871,"lv":"TMG","c":"arq-timing","m":"tx_end seq=15 dur=7442ms"}
+{"t":1788203115812,"up":1825898,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=14 rtt=10769ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203115812,"up":1825898,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=13.2 olla=+3.0 retries=0 backlog=1016 startup_rem=-233475ms"}
+{"t":1788203116712,"up":1826798,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=15 mode=DATAC17 backlog=0 bytes=1016 tx_total=9644"}
+{"t":1788203116848,"up":1826934,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203116848,"up":1826934,"lv":"TMG","c":"arq-timing","m":"tx_start seq=16 mode=DATAC17 backlog=0"}
+{"t":1788203124290,"up":1834376,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203124290,"up":1834376,"lv":"TMG","c":"arq-timing","m":"tx_end seq=16 dur=7442ms"}
+{"t":1788203128311,"up":1838397,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=15 rtt=10763ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788203128327,"up":1838414,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=16 mode=DATAC17 backlog=0 bytes=30 tx_total=9674"}
+{"t":1788203128434,"up":1838520,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203128434,"up":1838520,"lv":"TMG","c":"arq-timing","m":"tx_start seq=17 mode=DATAC17 backlog=0"}
+{"t":1788203135875,"up":1845962,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203135875,"up":1845962,"lv":"TMG","c":"arq-timing","m":"tx_end seq=17 dur=7442ms"}
+{"t":1788203139894,"up":1849981,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=16 rtt=10761ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788203139951,"up":1850037,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=17 mode=DATAC17 backlog=0 bytes=2 tx_total=9676"}
+{"t":1788203140040,"up":1850126,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203140040,"up":1850126,"lv":"TMG","c":"arq-timing","m":"tx_start seq=18 mode=DATAC17 backlog=0"}
+{"t":1788203147481,"up":1857567,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203147481,"up":1857567,"lv":"TMG","c":"arq-timing","m":"tx_end seq=18 dur=7441ms"}
+{"t":1788203151601,"up":1861687,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=17 rtt=10861ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788203151601,"up":1861688,"lv":"TMG","c":"arq-timing","m":"turn dir=→IRS reason=piggyback"}
+{"t":1788203156503,"up":1866589,"lv":"TMG","c":"arq-timing","m":"data_rx seq=3 bytes=3 snr_local=12.5 rx_total=110 turnaround=9022ms"}
+{"t":1788203157203,"up":1867290,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=3 delay_from_rx=701ms"}
+{"t":1788203157337,"up":1867423,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203158643,"up":1868730,"lv":"INF","c":"tcp-ctl","m":"Command received: DISCONNECT"}
+{"t":1788203158644,"up":1868730,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
+{"t":1788203161148,"up":1871234,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203161148,"up":1871234,"lv":"TMG","c":"arq-timing","m":"turn dir=→ISS reason=piggyback"}
+{"t":1788203161148,"up":1871234,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=12.0 local_snr=12.6 olla=+3.0 retries=0 backlog=3 startup_rem=-278811ms"}
+{"t":1788203162047,"up":1872134,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=18 mode=DATAC17 backlog=0 bytes=3 tx_total=9679"}
+{"t":1788203162092,"up":1872179,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203162092,"up":1872179,"lv":"TMG","c":"arq-timing","m":"tx_start seq=19 mode=DATAC17 backlog=0"}
+{"t":1788203169534,"up":1879620,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203169534,"up":1879621,"lv":"TMG","c":"arq-timing","m":"tx_end seq=19 dur=7442ms"}
+{"t":1788203173606,"up":1883692,"lv":"TMG","c":"arq-timing","m":"disconnect reason=rx_disconnect tx_bytes=9679 rx_bytes=110 frames_tx=19 frames_rx=4 retries=0"}
+{"t":1788203173678,"up":1883765,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788203177490,"up":1887576,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788203177490,"up":1887577,"lv":"INF","c":"arq","m":"Disconnected"}
+{"t":1788203177633,"up":1887720,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}

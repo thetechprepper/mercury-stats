@@ -124,7 +124,7 @@ def detail_screen(stdscr, session) -> None:
         ("Retries", str(metrics.retries) if metrics.retries is not None else "-"),
         ("", ""),
         ("Connect mode", metrics.connect_mode or "-"),
-        ("Payload transition", transition_text),
+        ("Payload transitions", transition_text),
         ("Final TX data mode", metrics.final_tx_mode or "-"),
     ]
 

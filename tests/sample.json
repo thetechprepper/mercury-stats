@@ -1,15 +1,17 @@
-{"t":1788201349509,"up":59596,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN-2 KT7RUN"}
-{"t":1788201357352,"up":67438,"lv":"INF","c":"arq","m":"Connected to KT7RUN"}
-{"t":1788201357352,"up":67438,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
-{"t":1788201374874,"up":84961,"lv":"TMG","c":"arq-timing","m":"data_rx seq=0 bytes=22 snr_local=15.6 rx_total=22 turnaround=0ms"}
-{"t":1788201391675,"up":101761,"lv":"TMG","c":"arq-timing","m":"data_rx seq=1 bytes=80 snr_local=15.2 rx_total=102 turnaround=0ms"}
-{"t":1788201396282,"up":106368,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=22 peer_snr=8.0 local_snr=14.9 olla=+0.0 retries=0 backlog=64 startup_rem=-28930ms"}
-{"t":1788201396282,"up":106368,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 22 -> 12 (peer_snr=8.0 olla=+0.0 eff=8.0 dB, backlog=64)"}
-{"t":1788201404233,"up":114319,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 22 -> 12"}
-{"t":1788201405133,"up":115219,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC3 backlog=0 bytes=64 tx_total=64"}
-{"t":1788201413143,"up":123229,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=1 mode=DATAC3 backlog=0 bytes=3 tx_total=67"}
-{"t":1788201426073,"up":136160,"lv":"TMG","c":"arq-timing","m":"data_rx seq=2 bytes=3 snr_local=14.6 rx_total=105 turnaround=8932ms"}
-{"t":1788201426168,"up":136254,"lv":"INF","c":"tcp-ctl","m":"Command received: DISCONNECT"}
-{"t":1788201434071,"up":144158,"lv":"INF","c":"arq-fsm","m":"Disconnect finalized (peer ack)"}
-{"t":1788201434071,"up":144158,"lv":"INF","c":"arq","m":"Disconnected"}
-{"t":1788201434072,"up":144158,"lv":"TMG","c":"arq-timing","m":"disconnect reason=peer_ack tx_bytes=67 rx_bytes=105 frames_tx=2 frames_rx=3 retries=0"}
+{"t":1788202864498,"up":1574584,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN-2 KT7RUN"}
+{"t":1788202872337,"up":1582423,"lv":"INF","c":"arq","m":"Connected to KT7RUN"}
+{"t":1788202872337,"up":1582423,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
+{"t":1788202911298,"up":1621384,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 22 -> 12 (peer_snr=9.0 olla=+0.0 eff=9.0 dB, backlog=96)"}
+{"t":1788202919252,"up":1629338,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 22 -> 12"}
+{"t":1788202920152,"up":1630238,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC3 backlog=0 bytes=96 tx_total=96"}
+{"t":1788202941016,"up":1651103,"lv":"TMG","c":"arq-timing","m":"data_rx seq=2 bytes=5 snr_local=15.4 rx_total=107 turnaround=8950ms"}
+{"t":1788202945631,"up":1655717,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 12 -> 10 (peer_snr=11.0 olla=+0.9 eff=11.9 dB, backlog=1287)"}
+{"t":1788202953577,"up":1663663,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 12 -> 10"}
+{"t":1788202954476,"up":1664563,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=2 mode=DATAC1 backlog=785 bytes=502 tx_total=604"}
+{"t":1788202963496,"up":1673582,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 10 -> 24 (peer_snr=11.0 olla=+1.3 eff=12.3 dB, backlog=785)"}
+{"t":1788202971362,"up":1681449,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 10 -> 24"}
+{"t":1788202972263,"up":1682349,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=3 mode=DATAC17 backlog=0 bytes=912 tx_total=1516"}
+{"t":1788203156503,"up":1866589,"lv":"TMG","c":"arq-timing","m":"data_rx seq=3 bytes=3 snr_local=12.5 rx_total=110 turnaround=9022ms"}
+{"t":1788203162047,"up":1872134,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=18 mode=DATAC17 backlog=0 bytes=3 tx_total=9679"}
+{"t":1788203173606,"up":1883692,"lv":"TMG","c":"arq-timing","m":"disconnect reason=rx_disconnect tx_bytes=9679 rx_bytes=110 frames_tx=19 frames_rx=4 retries=0"}
+{"t":1788203177490,"up":1887577,"lv":"INF","c":"arq","m":"Disconnected"}
