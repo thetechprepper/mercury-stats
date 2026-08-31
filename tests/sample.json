@@ -1,6 +1,7 @@
 {"t":1788202864498,"up":1574584,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN-2 KT7RUN"}
 {"t":1788202872337,"up":1582423,"lv":"INF","c":"arq","m":"Connected to KT7RUN"}
 {"t":1788202872337,"up":1582423,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
+{"t":1788202897805,"up":1607892,"lv":"INF","c":"arq-fsm","m":"MODE_REQ: peer TX mode 22 -> 12 (my TX mode 22 unchanged)"}
 {"t":1788202911298,"up":1621384,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 22 -> 12 (peer_snr=9.0 olla=+0.0 eff=9.0 dB, backlog=96)"}
 {"t":1788202919252,"up":1629338,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 22 -> 12"}
 {"t":1788202920152,"up":1630238,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC3 backlog=0 bytes=96 tx_total=96"}

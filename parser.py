@@ -39,9 +39,9 @@ def parse_json_timestamp(value: object) -> datetime | None:
         return None
 
 
-def connect_peer(message: str) -> str | None:
+def connect_callsigns(message: str) -> tuple[str, str] | None:
     """
-    Extract the remote peer from Mercury's CONNECT control command.
+    Extract local and remote callsigns from Mercury's CONNECT command.
 
     Expected message:
         Command received: CONNECT <local> <peer>
@@ -53,7 +53,7 @@ def connect_peer(message: str) -> str | None:
     if len(parts) < 2:
         return None
 
-    return parts[1].upper()
+    return parts[0].upper(), parts[1].upper()
 
 
 def classify_event(message: str) -> str:
@@ -79,6 +79,8 @@ def classify_event(message: str) -> str:
         return "tx_end"
     if message.startswith("connect mode="):
         return "connect_mode"
+    if message.startswith("MODE_REQ: peer TX mode "):
+        return "peer_tx_mode_request"
     if message.startswith("MODE_ACK: payload mode "):
         return "payload_mode_ack"
     if message.startswith("Mode negotiation: "):
@@ -116,14 +118,16 @@ def _parse_events(events: Iterable[Event]) -> list[Session]:
 
     for event in events:
         if event.kind == "connect_command":
-            peer = connect_peer(event.message)
-            if peer is None:
+            callsigns = connect_callsigns(event.message)
+            if callsigns is None:
                 continue
+
+            mycall, peer = callsigns
 
             if current is not None:
                 _finalize_session(sessions, current, fallback_end=event.timestamp)
 
-            current = Session(peer=peer, start=event.timestamp)
+            current = Session(mycall=mycall, peer=peer, start=event.timestamp)
             current.events.append(event)
             continue
 

@@ -24,6 +24,9 @@ class JsonParserTests(unittest.TestCase):
     def test_peer(self):
         self.assertEqual(self.session.peer, "KT7RUN")
 
+    def test_mycall(self):
+        self.assertEqual(self.session.mycall, "KT7RUN-2")
+
     def test_epoch_timestamp(self):
         dt = parse_json_timestamp(1788202864498)
         self.assertIsNotNone(dt)
@@ -66,6 +69,10 @@ class JsonParserTests(unittest.TestCase):
                 "DATAC3 → DATAC1",
                 "DATAC1 → DATAC17",
             ],
+        )
+        self.assertEqual(
+            self.metrics.peer_tx_requested_transitions,
+            ["DATAC15 → DATAC3"],
         )
         self.assertEqual(self.metrics.final_tx_mode, "DATAC17")
 

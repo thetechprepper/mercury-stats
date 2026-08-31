@@ -135,6 +135,11 @@ def detail_screen(stdscr, session) -> None:
         if metrics.payload_transitions
         else "-"
     )
+    peer_transition_text = (
+        " | ".join(metrics.peer_tx_requested_transitions)
+        if metrics.peer_tx_requested_transitions
+        else "-"
+    )
 
     report_lines = [
         f"{'Peer':<20} {metrics.peer}",
@@ -155,9 +160,12 @@ def detail_screen(stdscr, session) -> None:
         f"{'RX frames':<20} {metrics.frames_rx if metrics.frames_rx is not None else '-'}",
         f"{'Retries':<20} {metrics.retries if metrics.retries is not None else '-'}",
         "",
-        f"{'Connect mode':<20} {metrics.connect_mode or '-'}",
-        f"{'Payload transitions':<20} {transition_text}",
-        f"{'Final TX data mode':<20} {metrics.final_tx_mode or '-'}",
+        f"{'Connect mode':<28} {metrics.connect_mode or '-'}",
+        f"{'Local TX transitions':<28} {transition_text}",
+        f"{'Peer TX transitions':<28} {peer_transition_text}",
+        f"{'Final TX data mode':<28} {metrics.final_tx_mode or '-'}",
+        "",
+        "Note: Peer transitions only show requested transitions, not actual.",
         "",
         "Mercury ARQ Mode Legend",
         *mode_legend_lines(),
@@ -172,7 +180,7 @@ def detail_screen(stdscr, session) -> None:
         max_top = max(0, len(report_lines) - visible_rows)
         top = min(top, max_top)
 
-        safe_addstr(stdscr, 0, 1, f"Session: {session.peer}", curses.A_BOLD)
+        safe_addstr(stdscr, 0, 1, f"Session: {session.mycall} → {session.peer}", curses.A_BOLD)
         safe_addstr(stdscr, 1, 1, "-" * 78)
 
         for screen_row, line in enumerate(

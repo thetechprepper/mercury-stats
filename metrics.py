@@ -57,6 +57,7 @@ class SessionMetrics:
     frames_rx: int | None
     connect_mode: str | None
     payload_transitions: list[str]
+    peer_tx_requested_transitions: list[str]
     final_tx_mode: str | None
 
 
@@ -108,6 +109,22 @@ def payload_transition(message: str) -> str | None:
     return None
 
 
+def peer_tx_requested_transition(message: str) -> str | None:
+    prefix = "MODE_REQ: peer TX mode "
+    if not message.startswith(prefix):
+        return None
+
+    # Expected form:
+    # MODE_REQ: peer TX mode 22 -> 12 (my TX mode 22 unchanged)
+    parts = message[len(prefix):].split()
+    if len(parts) >= 3 and parts[1] == "->":
+        old_id = parts[0]
+        new_id = parts[2]
+        return f"{mode_name(old_id)} → {mode_name(new_id)}"
+
+    return None
+
+
 def calculate_metrics(session: Session) -> SessionMetrics:
     connected_at = None
     disconnect_reason = None
@@ -126,6 +143,7 @@ def calculate_metrics(session: Session) -> SessionMetrics:
 
     connect_mode = None
     transitions: list[str] = []
+    peer_requested_transitions: list[str] = []
     final_tx_mode = None
 
     for event in session.events:
@@ -138,6 +156,11 @@ def calculate_metrics(session: Session) -> SessionMetrics:
             value = message.removeprefix("connect mode=").strip()
             if value:
                 connect_mode = value
+
+        elif event.kind == "peer_tx_mode_request":
+            transition = peer_tx_requested_transition(message)
+            if transition and transition not in peer_requested_transitions:
+                peer_requested_transitions.append(transition)
 
         elif event.kind == "payload_mode_ack":
             transition = payload_transition(message)
@@ -206,6 +229,7 @@ def calculate_metrics(session: Session) -> SessionMetrics:
         frames_rx=summary_frames_rx,
         connect_mode=connect_mode,
         payload_transitions=transitions,
+        peer_tx_requested_transitions=peer_requested_transitions,
         final_tx_mode=final_tx_mode,
     )
 

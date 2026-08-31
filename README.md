@@ -91,7 +91,8 @@ or after it.
 - TX/RX ARQ data frames
 - Retries
 - Connect mode
-- Payload-mode transitions
+- Local TX payload-mode transitions
+- Peer TX transitions (requested transitions only)
 - Final TX data mode
 
 Connect mode and payload/data mode are intentionally reported separately.

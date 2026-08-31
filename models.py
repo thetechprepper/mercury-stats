@@ -18,6 +18,7 @@ class Event:
 
 @dataclass
 class Session:
+    mycall: str
     peer: str
     start: datetime
     end: Optional[datetime] = None
