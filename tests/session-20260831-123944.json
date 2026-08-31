@@ -1,0 +1,166 @@
+{"t":1788205184351,"up":3894437,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
+{"t":1788205184351,"up":3894438,"lv":"INF","c":"tcp-ctl","m":"Command received: WINLINK SESSION"}
+{"t":1788205184351,"up":3894438,"lv":"WRN","c":"tcp-ctl","m":"Unknown command: WINLINK SESSION"}
+{"t":1788205184351,"up":3894438,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN-2 KT7RUN"}
+{"t":1788205184388,"up":3894475,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205188200,"up":3898287,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205192212,"up":3902299,"lv":"INF","c":"arq","m":"Connected to KT7RUN"}
+{"t":1788205192212,"up":3902299,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
+{"t":1788205193146,"up":3903233,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205196959,"up":3907045,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205200334,"up":3910421,"lv":"TMG","c":"arq-timing","m":"turn dir=→IRS reason=turn_req"}
+{"t":1788205201070,"up":3911157,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205204883,"up":3914969,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205209795,"up":3919882,"lv":"TMG","c":"arq-timing","m":"data_rx seq=0 bytes=22 snr_local=13.4 rx_total=22 turnaround=0ms"}
+{"t":1788205210496,"up":3920582,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=0 delay_from_rx=700ms"}
+{"t":1788205210524,"up":3920611,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205214336,"up":3924422,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205217704,"up":3927790,"lv":"INF","c":"arq-fsm","m":"MODE_REQ: peer TX mode 22 -> 12 (my TX mode 22 unchanged)"}
+{"t":1788205218418,"up":3928505,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205222230,"up":3932317,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205226605,"up":3936691,"lv":"TMG","c":"arq-timing","m":"data_rx seq=1 bytes=80 snr_local=13.7 rx_total=102 turnaround=0ms"}
+{"t":1788205227304,"up":3937391,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=1 delay_from_rx=700ms"}
+{"t":1788205227365,"up":3937451,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205231176,"up":3941263,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205231176,"up":3941263,"lv":"TMG","c":"arq-timing","m":"turn dir=→ISS reason=piggyback"}
+{"t":1788205231176,"up":3941263,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=22 peer_snr=8.0 local_snr=13.7 olla=+0.0 retries=0 backlog=97 startup_rem=-28964ms"}
+{"t":1788205231176,"up":3941263,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 22 -> 12 (peer_snr=8.0 olla=+0.0 eff=8.0 dB, backlog=97)"}
+{"t":1788205231311,"up":3941397,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205235123,"up":3945209,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205239106,"up":3949192,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 22 -> 12"}
+{"t":1788205239106,"up":3949192,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=12 peer_snr=8.0 local_snr=13.7 olla=+0.0 retries=0 backlog=97 startup_rem=-36893ms"}
+{"t":1788205240006,"up":3950093,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC3 backlog=0 bytes=97 tx_total=97"}
+{"t":1788205240063,"up":3950149,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205240063,"up":3950149,"lv":"TMG","c":"arq-timing","m":"tx_start seq=1 mode=DATAC3 backlog=0"}
+{"t":1788205243984,"up":3954070,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205243984,"up":3954070,"lv":"TMG","c":"arq-timing","m":"tx_end seq=1 dur=3921ms"}
+{"t":1788205247989,"up":3958075,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=0 rtt=7226ms peer_delay=700ms snr_peer=10.0"}
+{"t":1788205248081,"up":3958167,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=1 mode=DATAC3 backlog=0 bytes=6 tx_total=103"}
+{"t":1788205248124,"up":3958210,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205248124,"up":3958210,"lv":"TMG","c":"arq-timing","m":"tx_start seq=2 mode=DATAC3 backlog=0"}
+{"t":1788205252045,"up":3962131,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205252045,"up":3962131,"lv":"TMG","c":"arq-timing","m":"tx_end seq=2 dur=3921ms"}
+{"t":1788205256072,"up":3966158,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=1 rtt=7248ms peer_delay=700ms snr_peer=10.0"}
+{"t":1788205256072,"up":3966158,"lv":"TMG","c":"arq-timing","m":"turn dir=→IRS reason=piggyback"}
+{"t":1788205260994,"up":3971080,"lv":"TMG","c":"arq-timing","m":"data_rx seq=2 bytes=5 snr_local=13.7 rx_total=107 turnaround=8949ms"}
+{"t":1788205261693,"up":3971780,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=2 delay_from_rx=700ms"}
+{"t":1788205261798,"up":3971885,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205265610,"up":3975696,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205265610,"up":3975696,"lv":"TMG","c":"arq-timing","m":"turn dir=→ISS reason=piggyback"}
+{"t":1788205265610,"up":3975697,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=12 peer_snr=10.0 local_snr=13.7 olla=+0.9 retries=0 backlog=1287 startup_rem=-63398ms"}
+{"t":1788205265610,"up":3975697,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 12 -> 10 (peer_snr=10.0 olla=+0.9 eff=10.9 dB, backlog=1287)"}
+{"t":1788205265744,"up":3975830,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205269555,"up":3979642,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205273572,"up":3983658,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 12 -> 10"}
+{"t":1788205273572,"up":3983658,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=10 peer_snr=10.0 local_snr=13.7 olla=+0.9 retries=0 backlog=1287 startup_rem=-71359ms"}
+{"t":1788205274472,"up":3984559,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=2 mode=DATAC1 backlog=785 bytes=502 tx_total=605"}
+{"t":1788205274585,"up":3984671,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205274585,"up":3984671,"lv":"TMG","c":"arq-timing","m":"tx_start seq=3 mode=DATAC1 backlog=785"}
+{"t":1788205279496,"up":3989582,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205279496,"up":3989582,"lv":"TMG","c":"arq-timing","m":"tx_end seq=3 dur=4911ms"}
+{"t":1788205283470,"up":3993557,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=2 rtt=8186ms peer_delay=700ms snr_peer=11.0"}
+{"t":1788205283470,"up":3993557,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=10 peer_snr=11.0 local_snr=13.5 olla=+1.3 retries=0 backlog=785 startup_rem=-81258ms"}
+{"t":1788205283470,"up":3993557,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 10 -> 24 (peer_snr=11.0 olla=+1.3 eff=12.3 dB, backlog=785)"}
+{"t":1788205283538,"up":3993625,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205287351,"up":3997437,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205291338,"up":4001425,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 10 -> 24"}
+{"t":1788205291338,"up":4001425,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=11.0 local_snr=13.4 olla=+1.3 retries=0 backlog=912 startup_rem=-89126ms"}
+{"t":1788205292239,"up":4002325,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=3 mode=DATAC17 backlog=0 bytes=912 tx_total=1517"}
+{"t":1788205292319,"up":4002405,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205292319,"up":4002405,"lv":"TMG","c":"arq-timing","m":"tx_start seq=4 mode=DATAC17 backlog=0"}
+{"t":1788205299760,"up":4009846,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205299760,"up":4009846,"lv":"TMG","c":"arq-timing","m":"tx_end seq=4 dur=7441ms"}
+{"t":1788205303779,"up":4013866,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=3 rtt=10761ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788205303794,"up":4013880,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=4 mode=DATAC17 backlog=0 bytes=254 tx_total=1771"}
+{"t":1788205303924,"up":4014011,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205303924,"up":4014011,"lv":"TMG","c":"arq-timing","m":"tx_start seq=5 mode=DATAC17 backlog=889"}
+{"t":1788205311366,"up":4021453,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205311366,"up":4021453,"lv":"TMG","c":"arq-timing","m":"tx_end seq=5 dur=7442ms"}
+{"t":1788205315378,"up":4025465,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=4 rtt=10754ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788205315378,"up":4025465,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=12.0 local_snr=13.6 olla=+2.1 retries=0 backlog=889 startup_rem=-113166ms"}
+{"t":1788205316279,"up":4026365,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=5 mode=DATAC17 backlog=0 bytes=889 tx_total=2660"}
+{"t":1788205316437,"up":4026523,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205316437,"up":4026523,"lv":"TMG","c":"arq-timing","m":"tx_start seq=6 mode=DATAC17 backlog=0"}
+{"t":1788205323879,"up":4033966,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205323879,"up":4033966,"lv":"TMG","c":"arq-timing","m":"tx_end seq=6 dur=7443ms"}
+{"t":1788205327908,"up":4037994,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=5 rtt=10771ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788205327943,"up":4038029,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=6 mode=DATAC17 backlog=0 bytes=254 tx_total=2914"}
+{"t":1788205328044,"up":4038130,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205328044,"up":4038131,"lv":"TMG","c":"arq-timing","m":"tx_start seq=7 mode=DATAC17 backlog=1270"}
+{"t":1788205335486,"up":4045573,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205335486,"up":4045573,"lv":"TMG","c":"arq-timing","m":"tx_end seq=7 dur=7442ms"}
+{"t":1788205339509,"up":4049596,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=6 rtt=10765ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788205339509,"up":4049596,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=12.0 local_snr=13.7 olla=+3.0 retries=0 backlog=1270 startup_rem=-137297ms"}
+{"t":1788205340410,"up":4050496,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=7 mode=DATAC17 backlog=98 bytes=1172 tx_total=4086"}
+{"t":1788205340553,"up":4050640,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205340553,"up":4050640,"lv":"TMG","c":"arq-timing","m":"tx_start seq=8 mode=DATAC17 backlog=98"}
+{"t":1788205347996,"up":4058082,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205347996,"up":4058082,"lv":"TMG","c":"arq-timing","m":"tx_end seq=8 dur=7442ms"}
+{"t":1788205352031,"up":4062117,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=7 rtt=10777ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788205352031,"up":4062117,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=13.4 olla=+3.0 retries=0 backlog=98 startup_rem=-149818ms"}
+{"t":1788205352931,"up":4063017,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=8 mode=DATAC17 backlog=69 bytes=1172 tx_total=5258"}
+{"t":1788205353063,"up":4063150,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205353064,"up":4063150,"lv":"TMG","c":"arq-timing","m":"tx_start seq=9 mode=DATAC17 backlog=69"}
+{"t":1788205360505,"up":4070592,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205360505,"up":4070592,"lv":"TMG","c":"arq-timing","m":"tx_end seq=9 dur=7442ms"}
+{"t":1788205364534,"up":4074621,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=8 rtt=10771ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788205364534,"up":4074621,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=13.6 olla=+3.0 retries=0 backlog=69 startup_rem=-162322ms"}
+{"t":1788205365435,"up":4075521,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=9 mode=DATAC17 backlog=40 bytes=1172 tx_total=6430"}
+{"t":1788205365572,"up":4075659,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205365572,"up":4075659,"lv":"TMG","c":"arq-timing","m":"tx_start seq=10 mode=DATAC17 backlog=40"}
+{"t":1788205373014,"up":4083101,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205373015,"up":4083101,"lv":"TMG","c":"arq-timing","m":"tx_end seq=10 dur=7442ms"}
+{"t":1788205377030,"up":4087116,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=9 rtt=10757ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788205377030,"up":4087116,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=13.7 olla=+3.0 retries=0 backlog=40 startup_rem=-174817ms"}
+{"t":1788205377930,"up":4088016,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=10 mode=DATAC17 backlog=11 bytes=1172 tx_total=7602"}
+{"t":1788205378083,"up":4088170,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205378083,"up":4088170,"lv":"TMG","c":"arq-timing","m":"tx_start seq=11 mode=DATAC17 backlog=11"}
+{"t":1788205385525,"up":4095611,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205385525,"up":4095611,"lv":"TMG","c":"arq-timing","m":"tx_end seq=11 dur=7441ms"}
+{"t":1788205389536,"up":4099623,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=10 rtt=10753ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788205389536,"up":4099623,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=13.7 olla=+3.0 retries=0 backlog=11 startup_rem=-187324ms"}
+{"t":1788205390437,"up":4100523,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=11 mode=DATAC17 backlog=109 bytes=1172 tx_total=8774"}
+{"t":1788205390589,"up":4100676,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205390589,"up":4100676,"lv":"TMG","c":"arq-timing","m":"tx_start seq=12 mode=DATAC17 backlog=109"}
+{"t":1788205398031,"up":4108118,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205398031,"up":4108118,"lv":"TMG","c":"arq-timing","m":"tx_end seq=12 dur=7442ms"}
+{"t":1788205402075,"up":4112162,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=11 rtt=10786ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788205402075,"up":4112162,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=13.6 olla=+3.0 retries=0 backlog=109 startup_rem=-199863ms"}
+{"t":1788205402976,"up":4113062,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=12 mode=DATAC17 backlog=686 bytes=1172 tx_total=9946"}
+{"t":1788205403097,"up":4113183,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205403097,"up":4113183,"lv":"TMG","c":"arq-timing","m":"tx_start seq=13 mode=DATAC17 backlog=686"}
+{"t":1788205410538,"up":4120624,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205410538,"up":4120624,"lv":"TMG","c":"arq-timing","m":"tx_end seq=13 dur=7441ms"}
+{"t":1788205414556,"up":4124643,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=12 rtt=10760ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788205414556,"up":4124643,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=13.0 local_snr=13.7 olla=+3.0 retries=0 backlog=686 startup_rem=-212344ms"}
+{"t":1788205415457,"up":4125543,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=13 mode=DATAC17 backlog=0 bytes=686 tx_total=10632"}
+{"t":1788205415605,"up":4125692,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205415605,"up":4125692,"lv":"TMG","c":"arq-timing","m":"tx_start seq=14 mode=DATAC17 backlog=0"}
+{"t":1788205423047,"up":4133134,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205423047,"up":4133134,"lv":"TMG","c":"arq-timing","m":"tx_end seq=14 dur=7442ms"}
+{"t":1788205427082,"up":4137169,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=13 rtt=10777ms peer_delay=700ms snr_peer=13.0"}
+{"t":1788205427140,"up":4137226,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=14 mode=DATAC17 backlog=0 bytes=2 tx_total=10634"}
+{"t":1788205427212,"up":4137299,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205427212,"up":4137299,"lv":"TMG","c":"arq-timing","m":"tx_start seq=15 mode=DATAC17 backlog=0"}
+{"t":1788205434654,"up":4144740,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205434654,"up":4144740,"lv":"TMG","c":"arq-timing","m":"tx_end seq=15 dur=7441ms"}
+{"t":1788205438685,"up":4148772,"lv":"TMG","c":"arq-timing","m":"ack_rx seq=14 rtt=10773ms peer_delay=700ms snr_peer=12.0"}
+{"t":1788205438685,"up":4148772,"lv":"TMG","c":"arq-timing","m":"turn dir=→IRS reason=piggyback"}
+{"t":1788205443589,"up":4153676,"lv":"TMG","c":"arq-timing","m":"data_rx seq=3 bytes=3 snr_local=12.8 rx_total=110 turnaround=8936ms"}
+{"t":1788205444290,"up":4154376,"lv":"TMG","c":"arq-timing","m":"ack_tx seq=3 delay_from_rx=700ms"}
+{"t":1788205444411,"up":4154498,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205445677,"up":4155763,"lv":"INF","c":"tcp-ctl","m":"Command received: DISCONNECT"}
+{"t":1788205445777,"up":4155864,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
+{"t":1788205448223,"up":4158310,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205448223,"up":4158310,"lv":"TMG","c":"arq-timing","m":"turn dir=→ISS reason=piggyback"}
+{"t":1788205448223,"up":4158310,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=24 peer_snr=12.0 local_snr=12.8 olla=+3.0 retries=0 backlog=3 startup_rem=-246011ms"}
+{"t":1788205449124,"up":4159210,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=15 mode=DATAC17 backlog=0 bytes=3 tx_total=10637"}
+{"t":1788205449183,"up":4159270,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205449183,"up":4159270,"lv":"TMG","c":"arq-timing","m":"tx_start seq=16 mode=DATAC17 backlog=0"}
+{"t":1788205456625,"up":4166712,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205456625,"up":4166712,"lv":"TMG","c":"arq-timing","m":"tx_end seq=16 dur=7442ms"}
+{"t":1788205460703,"up":4170789,"lv":"TMG","c":"arq-timing","m":"disconnect reason=rx_disconnect tx_bytes=10637 rx_bytes=110 frames_tx=16 frames_rx=4 retries=0"}
+{"t":1788205460763,"up":4170849,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)"}
+{"t":1788205464575,"up":4174661,"lv":"INF","c":"radio","m":"TX disabled (PTT OFF)"}
+{"t":1788205464575,"up":4174661,"lv":"INF","c":"arq","m":"Disconnected"}
+{"t":1788205464666,"up":4174752,"lv":"INF","c":"tcp-ctl","m":"Command received: BW2300"}
