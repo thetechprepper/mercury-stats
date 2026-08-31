@@ -26,13 +26,13 @@ FREEDV_MODE_NAMES = {
 # Payload is ARQ payload bytes per frame, not the larger raw FreeDV frame size.
 # Ordered by the adaptive payload ladder, followed by the control mode.
 ARQ_MODE_LEGEND = (
-    ("22", "DATAC15", "22 B", "Payload; lowest SNR / ladder floor"),
-    ("18", "DATAC4", "46 B", "Payload; low SNR"),
-    ("12", "DATAC3", "118 B", "Payload; default startup mode"),
-    ("10", "DATAC1", "502 B", "Payload; +5 dB SNR"),
-    ("24", "DATAC17", "1172 B", "Payload; intermediate SNR (~+8 dB)"),
-    ("25", "QAM16C2", "1205 B", "Payload; high SNR (~+15 dB)"),
-    ("23", "DATAC16", "6 B", "Control; ARQ control channel"),
+    ("22", "DATAC15", "30 B", "Payload; lowest SNR / ladder floor"),
+    ("18", "DATAC4", "54 B", "Payload; low SNR"),
+    ("12", "DATAC3", "126 B", "Payload; default startup mode"),
+    ("10", "DATAC1", "510 B", "Payload; +5 dB SNR"),
+    ("24", "DATAC17", "1180 B", "Payload; intermediate SNR (~+8 dB)"),
+    ("25", "QAM16C2", "1213 B", "Payload; high SNR (~+15 dB)"),
+    ("23", "DATAC16", "14 B", "Control; ARQ control channel"),
 )
 
 
