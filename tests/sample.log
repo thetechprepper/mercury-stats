@@ -1,0 +1,14 @@
+11:38:01.593 [+0.000s] [INF] [main] Async logger initialized (min_level=INFO)
+11:38:04.000 [+2.407s] [INF] [tcp] CONNECT KT7RUN KO0OOO
+11:38:07.100 [+5.507s] [INF] [arq] Active mode DATAC3
+11:38:12.400 [+10.807s] [INF] [arq] ARQ connected to peer KO0OOO
+11:38:15.000 [+13.407s] [INF] [arq] received 126 bytes DATAC3
+11:38:20.000 [+18.407s] [INF] [arq] mode upgrade DATAC4
+11:38:24.000 [+22.407s] [INF] [arq] retry slot 1
+11:38:30.000 [+28.407s] [INF] [arq] received 510 bytes DATAC4
+11:38:35.000 [+33.407s] [INF] [arq] transfer complete
+11:38:36.500 [+34.907s] [INF] [tcp] DISCONNECT
+11:40:00.000 [+118.407s] [INF] [tcp] CONNECT KT7RUN KK6MTU-9
+11:40:05.000 [+123.407s] [INF] [arq] Active mode DATAC3
+11:40:10.000 [+128.407s] [WRN] [arq] no-progress timeout
+11:40:11.000 [+129.407s] [INF] [tcp] DISCONNECT
