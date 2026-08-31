@@ -160,7 +160,7 @@ def detail_screen(stdscr, session) -> None:
         f"{'RX frames':<20} {metrics.frames_rx if metrics.frames_rx is not None else '-'}",
         f"{'Retries':<20} {metrics.retries if metrics.retries is not None else '-'}",
         "",
-        f"{'Connect mode':<28} {metrics.connect_mode or '-'}",
+        f"{'Control mode':<28} {metrics.connect_mode or '-'}",
         f"{'Local TX transitions':<28} {transition_text}",
         f"{'Peer TX transitions':<28} {peer_transition_text}",
         f"{'Final TX data mode':<28} {metrics.final_tx_mode or '-'}",

@@ -90,12 +90,12 @@ or after it.
 - Total bytes
 - TX/RX ARQ data frames
 - Retries
-- Connect mode
+- Control mode
 - Local TX payload-mode transitions
 - Peer TX transitions (requested transitions only)
 - Final TX data mode
 
-Connect mode and payload/data mode are intentionally reported separately.
+Control mode and payload/data mode are intentionally reported separately.
 
 
 ## FreeDV mode mapping
