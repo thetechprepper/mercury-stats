@@ -6,7 +6,7 @@ import curses
 import sys
 from pathlib import Path
 
-from metrics import calculate_metrics, format_bytes, format_duration
+from metrics import ARQ_MODE_LEGEND, calculate_metrics, format_bytes, format_duration
 from parser import MercuryLogError, parse_file
 
 
@@ -95,6 +95,38 @@ def session_list_screen(stdscr, path: Path, sessions) -> int | None:
             return selected
 
 
+def mode_legend_lines() -> list[str]:
+    headers = ("ID", "Mode", "Payload", "Use / description")
+    rows = [headers, *ARQ_MODE_LEGEND]
+
+    widths = [
+        max(len(str(row[column])) for row in rows)
+        for column in range(len(headers))
+    ]
+
+    def border(left: str, middle: str, right: str, fill: str = "─") -> str:
+        return (
+            left
+            + middle.join(fill * (width + 2) for width in widths)
+            + right
+        )
+
+    def data_row(row) -> str:
+        cells = [
+            f" {str(value):<{width}} "
+            for value, width in zip(row, widths)
+        ]
+        return "│" + "│".join(cells) + "│"
+
+    return [
+        border("┌", "┬", "┐"),
+        data_row(headers),
+        border("├", "┼", "┤"),
+        *(data_row(row) for row in ARQ_MODE_LEGEND),
+        border("└", "┴", "┘"),
+    ]
+
+
 def detail_screen(stdscr, session) -> None:
     metrics = calculate_metrics(session)
 
@@ -104,43 +136,56 @@ def detail_screen(stdscr, session) -> None:
         else "-"
     )
 
-    lines = [
-        ("Peer", metrics.peer),
-        ("Result", metrics.result),
-        ("Start", display_timestamp(session.start, milliseconds=True)),
+    report_lines = [
+        f"{'Peer':<20} {metrics.peer}",
+        f"{'Result':<20} {metrics.result}",
+        f"{'Start':<20} {display_timestamp(session.start, milliseconds=True)}",
         (
-            "Connected",
-            display_timestamp(metrics.connected_at, milliseconds=True)
-            if metrics.connected_at
-            else "-",
+            f"{'Connected':<20} "
+            f"{display_timestamp(metrics.connected_at, milliseconds=True) if metrics.connected_at else '-'}"
         ),
-        ("End", display_timestamp(session.end, milliseconds=True) if session.end else "-"),
-        ("Duration", format_duration(metrics.duration_seconds)),
-        ("Connection setup", format_duration(metrics.setup_seconds)),
-        ("", ""),
-        ("TX bytes", format_bytes(metrics.tx_bytes)),
-        ("RX bytes", format_bytes(metrics.rx_bytes)),
-        ("Total bytes", format_bytes(metrics.total_bytes)),
-        ("Retries", str(metrics.retries) if metrics.retries is not None else "-"),
-        ("", ""),
-        ("Connect mode", metrics.connect_mode or "-"),
-        ("Payload transitions", transition_text),
-        ("Final TX data mode", metrics.final_tx_mode or "-"),
+        f"{'End':<20} {display_timestamp(session.end, milliseconds=True) if session.end else '-'}",
+        f"{'Duration':<20} {format_duration(metrics.duration_seconds)}",
+        f"{'Connection setup':<20} {format_duration(metrics.setup_seconds)}",
+        "",
+        f"{'TX bytes':<20} {format_bytes(metrics.tx_bytes)}",
+        f"{'RX bytes':<20} {format_bytes(metrics.rx_bytes)}",
+        f"{'Total bytes':<20} {format_bytes(metrics.total_bytes)}",
+        f"{'TX frames':<20} {metrics.frames_tx if metrics.frames_tx is not None else '-'}",
+        f"{'RX frames':<20} {metrics.frames_rx if metrics.frames_rx is not None else '-'}",
+        f"{'Retries':<20} {metrics.retries if metrics.retries is not None else '-'}",
+        "",
+        f"{'Connect mode':<20} {metrics.connect_mode or '-'}",
+        f"{'Payload transitions':<20} {transition_text}",
+        f"{'Final TX data mode':<20} {metrics.final_tx_mode or '-'}",
+        "",
+        "Mercury ARQ Mode Legend",
+        *mode_legend_lines(),
     ]
+
+    top = 0
 
     while True:
         stdscr.erase()
+        height, _ = stdscr.getmaxyx()
+        visible_rows = max(1, height - 4)
+        max_top = max(0, len(report_lines) - visible_rows)
+        top = min(top, max_top)
+
         safe_addstr(stdscr, 0, 1, f"Session: {session.peer}", curses.A_BOLD)
         safe_addstr(stdscr, 1, 1, "-" * 78)
 
-        row = 3
-        for label, value in lines:
-            if label:
-                safe_addstr(stdscr, row, 2, f"{label:<20} {value}")
-            row += 1
+        for screen_row, line in enumerate(
+            report_lines[top:top + visible_rows],
+            start=3,
+        ):
+            safe_addstr(stdscr, screen_row, 2, line)
 
-        height, _ = stdscr.getmaxyx()
-        safe_addstr(stdscr, height - 1, 1, "Esc/Backspace Back   Q Quit")
+        footer = "Esc/Backspace Back   Q Quit"
+        if max_top:
+            footer = "↑/↓ Scroll   " + footer
+
+        safe_addstr(stdscr, height - 1, 1, footer)
         stdscr.refresh()
 
         key = stdscr.getch()
@@ -148,6 +193,14 @@ def detail_screen(stdscr, session) -> None:
             return
         if key in (ord("q"), ord("Q")):
             raise KeyboardInterrupt
+        if key in (curses.KEY_UP, ord("k")) and top > 0:
+            top -= 1
+        elif key in (curses.KEY_DOWN, ord("j")) and top < max_top:
+            top += 1
+        elif key == curses.KEY_PPAGE:
+            top = max(0, top - visible_rows)
+        elif key == curses.KEY_NPAGE:
+            top = min(max_top, top + visible_rows)
 
 
 def run_ui(stdscr, path: Path, sessions) -> None:

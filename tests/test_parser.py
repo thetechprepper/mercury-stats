@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from metrics import FREEDV_MODE_NAMES, calculate_metrics, format_bytes, mode_name
+from metrics import ARQ_MODE_LEGEND, FREEDV_MODE_NAMES, calculate_metrics, format_bytes, mode_name
 from parser import MercuryLogError, parse_file, parse_json_timestamp
 
 
@@ -81,6 +81,20 @@ class JsonParserTests(unittest.TestCase):
 
     def test_unknown_mode_is_visible(self):
         self.assertEqual(mode_name("999"), "MODE_999")
+
+    def test_arq_mode_legend(self):
+        self.assertEqual(
+            ARQ_MODE_LEGEND,
+            (
+                ("22", "DATAC15", "22 B", "Payload; lowest SNR / ladder floor"),
+                ("18", "DATAC4", "46 B", "Payload; low SNR"),
+                ("12", "DATAC3", "118 B", "Payload; default startup mode"),
+                ("10", "DATAC1", "502 B", "Payload; +5 dB SNR"),
+                ("24", "DATAC17", "1172 B", "Payload; intermediate SNR (~+8 dB)"),
+                ("25", "QAM16C2", "1205 B", "Payload; high SNR (~+15 dB)"),
+                ("23", "DATAC16", "6 B", "Control; ARQ control channel"),
+            ),
+        )
 
     def test_exact_and_human_byte_format(self):
         self.assertEqual(format_bytes(9679), "9679 B (9.45 KiB)")

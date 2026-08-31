@@ -88,6 +88,7 @@ or after it.
 - TX bytes
 - RX bytes
 - Total bytes
+- TX/RX ARQ data frames
 - Retries
 - Connect mode
 - Payload-mode transitions
@@ -129,6 +130,31 @@ Unknown IDs are displayed as `MODE_<id>` rather than guessed.
 
 Source:
 https://github.com/Rhizomatica/mercury/blob/mercuryv2/modem/freedv/freedv_api.h
+
+
+## ARQ mode legend
+
+The session detail screen includes a static Unicode legend for Mercury's
+adaptive ARQ modes. Payload values are **ARQ payload bytes per frame**, which
+match the data quantities reported in Mercury timing records such as
+`tx_queue bytes=`.
+
+```text
+┌────┬─────────┬─────────┬──────────────────────────────────────┐
+│ ID │ Mode    │ Payload │ Use / description                    │
+├────┼─────────┼─────────┼──────────────────────────────────────┤
+│ 22 │ DATAC15 │ 22 B    │ Payload; lowest SNR / ladder floor   │
+│ 18 │ DATAC4  │ 46 B    │ Payload; low SNR                     │
+│ 12 │ DATAC3  │ 118 B   │ Payload; default startup mode        │
+│ 10 │ DATAC1  │ 502 B   │ Payload; +5 dB SNR                   │
+│ 24 │ DATAC17 │ 1172 B  │ Payload; intermediate SNR (~+8 dB)   │
+│ 25 │ QAM16C2 │ 1205 B  │ Payload; high SNR (~+15 dB)          │
+│ 23 │ DATAC16 │ 6 B     │ Control; ARQ control channel         │
+└────┴─────────┴─────────┴──────────────────────────────────────┘
+```
+
+Source:
+https://github.com/Rhizomatica/mercury/blob/mercuryv2/mercury.1
 
 ## Requirements
 
