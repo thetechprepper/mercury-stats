@@ -143,7 +143,16 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Scan a Mercury HF log and select ARQ sessions in a curses interface."
     )
-    parser.add_argument("logfile", type=Path, help="Path to the Mercury log file")
+    parser.add_argument(
+        "logfile",
+        nargs="?",
+        type=Path,
+        default=Path("~/.local/share/emcomm-tools/mercury/session.log").expanduser(),
+        help=(
+            "Path to the Mercury log file "
+            "(default: ~/.local/share/emcomm-tools/mercury/session.log)"
+        ),
+    )
     return parser
 
 

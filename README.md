@@ -31,12 +31,26 @@ mercury-stats/
 
 ## Run
 
+By default, the application reads:
+
+```text
+~/.local/share/emcomm-tools/mercury/session.log
+```
+
+So normally you can simply run:
+
 ```bash
 chmod +x mercury_stats.py
-./mercury_stats.py /path/to/mercury.log
+./mercury_stats.py
 ```
 
 or:
+
+```bash
+python3 mercury_stats.py
+```
+
+To analyze a different log file, pass it explicitly:
 
 ```bash
 python3 mercury_stats.py /path/to/mercury.log
