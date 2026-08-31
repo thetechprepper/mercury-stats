@@ -7,6 +7,26 @@ from typing import Optional
 from models import Session
 
 
+# Mercury logs internal FreeDV mode IDs in payload_mode / MODE_ACK /
+# Mode negotiation messages. These values come from Mercury's vendored
+# modem/freedv/freedv_api.h definitions.
+FREEDV_MODE_NAMES = {
+    "10": "DATAC1",
+    "12": "DATAC3",
+    "18": "DATAC4",
+    "19": "DATAC13",
+    "22": "DATAC15",
+    "23": "DATAC16",
+    "24": "DATAC17",
+    "25": "QAM16C2",
+}
+
+
+def mode_name(mode_id: str) -> str:
+    """Return the DATAC/QAM name for a Mercury internal FreeDV mode ID."""
+    return FREEDV_MODE_NAMES.get(mode_id, f"MODE_{mode_id}")
+
+
 @dataclass
 class SessionMetrics:
     peer: str
@@ -67,7 +87,9 @@ def payload_transition(message: str) -> str | None:
 
     parts = message[len(prefix):].split()
     if len(parts) >= 3 and parts[1] == "->":
-        return f"{parts[0]} → {parts[2]}"
+        old_id = parts[0]
+        new_id = parts[2]
+        return f"{mode_name(old_id)} → {mode_name(new_id)}"
 
     return None
 

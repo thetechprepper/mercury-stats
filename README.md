@@ -95,6 +95,41 @@ or after it.
 
 Connect mode and payload/data mode are intentionally reported separately.
 
+
+## FreeDV mode mapping
+
+Mercury's ARQ timing/FSM messages use internal FreeDV numeric mode IDs.
+Mercury Stats translates them using the definitions in Mercury's vendored
+`modem/freedv/freedv_api.h`:
+
+```text
+10  DATAC1
+12  DATAC3
+18  DATAC4
+19  DATAC13
+22  DATAC15
+23  DATAC16
+24  DATAC17
+25  QAM16C2
+```
+
+For example:
+
+```text
+MODE_ACK: payload mode 22 -> 12
+```
+
+is reported as:
+
+```text
+DATAC15 → DATAC3
+```
+
+Unknown IDs are displayed as `MODE_<id>` rather than guessed.
+
+Source:
+https://github.com/Rhizomatica/mercury/blob/mercuryv2/modem/freedv/freedv_api.h
+
 ## Requirements
 
 - Linux

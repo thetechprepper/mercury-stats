@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from metrics import calculate_metrics, format_bytes
+from metrics import FREEDV_MODE_NAMES, calculate_metrics, format_bytes, mode_name
 from parser import MercuryLogError, parse_file, parse_json_timestamp
 
 
@@ -61,9 +61,26 @@ class JsonParserTests(unittest.TestCase):
         self.assertEqual(self.metrics.connect_mode, "DATAC16")
         self.assertEqual(
             self.metrics.payload_transitions,
-            ["22 → 12", "12 → 10", "10 → 24"],
+            [
+                "DATAC15 → DATAC3",
+                "DATAC3 → DATAC1",
+                "DATAC1 → DATAC17",
+            ],
         )
         self.assertEqual(self.metrics.final_tx_mode, "DATAC17")
+
+    def test_freedv_mode_map(self):
+        self.assertEqual(mode_name("10"), "DATAC1")
+        self.assertEqual(mode_name("12"), "DATAC3")
+        self.assertEqual(mode_name("18"), "DATAC4")
+        self.assertEqual(mode_name("19"), "DATAC13")
+        self.assertEqual(mode_name("22"), "DATAC15")
+        self.assertEqual(mode_name("23"), "DATAC16")
+        self.assertEqual(mode_name("24"), "DATAC17")
+        self.assertEqual(mode_name("25"), "QAM16C2")
+
+    def test_unknown_mode_is_visible(self):
+        self.assertEqual(mode_name("999"), "MODE_999")
 
     def test_exact_and_human_byte_format(self):
         self.assertEqual(format_bytes(9679), "9679 B (9.45 KiB)")
