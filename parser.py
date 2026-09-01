@@ -10,6 +10,7 @@ from models import Event, Session
 
 COMMAND_PREFIX = "Command received: "
 CONNECT_COMMAND_PREFIX = "Command received: CONNECT "
+INCOMING_CONNECTION_PREFIX = "Incoming connection from "
 
 FAIL_WORDS = (
     "connection failed",
@@ -56,6 +57,33 @@ def connect_callsigns(message: str) -> tuple[str, str] | None:
     return parts[0].upper(), parts[1].upper()
 
 
+def incoming_callsigns(message: str) -> tuple[str, str] | None:
+    """
+    Extract local and remote callsigns from Mercury's inbound connection notice.
+
+    Expected message:
+        Incoming connection from <peer> on <local> (pending)
+
+    Returns:
+        (local, peer)
+    """
+    if not message.startswith(INCOMING_CONNECTION_PREFIX):
+        return None
+
+    remainder = message[len(INCOMING_CONNECTION_PREFIX):]
+    peer, separator, local_part = remainder.partition(" on ")
+    if not separator:
+        return None
+
+    local = local_part.removesuffix(" (pending)").strip()
+    peer = peer.strip()
+
+    if not local or not peer:
+        return None
+
+    return local.upper(), peer.upper()
+
+
 def classify_event(message: str) -> str:
     """
     Classify only known Mercury message forms.
@@ -67,6 +95,8 @@ def classify_event(message: str) -> str:
 
     if message.startswith(CONNECT_COMMAND_PREFIX):
         return "connect_command"
+    if message.startswith(INCOMING_CONNECTION_PREFIX):
+        return "incoming_connection"
     if message.startswith("Connected to "):
         return "connected"
     if message == "Disconnected":
@@ -117,8 +147,12 @@ def _parse_events(events: Iterable[Event]) -> list[Session]:
     current: Session | None = None
 
     for event in events:
-        if event.kind == "connect_command":
-            callsigns = connect_callsigns(event.message)
+        if event.kind in ("connect_command", "incoming_connection"):
+            if event.kind == "connect_command":
+                callsigns = connect_callsigns(event.message)
+            else:
+                callsigns = incoming_callsigns(event.message)
+
             if callsigns is None:
                 continue
 

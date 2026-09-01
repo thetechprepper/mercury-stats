@@ -268,8 +268,8 @@ def main() -> int:
 
     if not sessions:
         print(
-            "No sessions found. The parser looks for "
-            "'CONNECT <local> <peer>' in Mercury JSONL message fields.",
+            "No sessions found. The parser looks for outbound CONNECT commands "
+            "or inbound 'Incoming connection from ...' events in Mercury JSONL.",
             file=sys.stderr,
         )
         return 1

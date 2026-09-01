@@ -1,0 +1,15 @@
+{"t":1788217997235,"up":2182,"lv":"INF","c":"arq","m":"My callsign: KT7RUN"}
+{"t":1788218178229,"up":183177,"lv":"INF","c":"arq","m":"Incoming connection from KT7RUN-2 on KT7RUN (pending)"}
+{"t":1788218186968,"up":191915,"lv":"INF","c":"arq","m":"Connected to KT7RUN-2"}
+{"t":1788218186968,"up":191915,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
+{"t":1788218194870,"up":199818,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=22 peer_snr=0.0 local_snr=8.5 olla=+0.0 retries=0 backlog=100 startup_rem=2097ms"}
+{"t":1788218195771,"up":200718,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC15 backlog=78 bytes=22 tx_total=22"}
+{"t":1788218204338,"up":209285,"lv":"INF","c":"arq-fsm","m":"Mode negotiation: 22 -> 12 (peer_snr=15.0 olla=+0.4 eff=15.4 dB, backlog=78)"}
+{"t":1788218212218,"up":217165,"lv":"INF","c":"arq-fsm","m":"MODE_ACK: payload mode 22 -> 12"}
+{"t":1788218213118,"up":218065,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=1 mode=DATAC3 backlog=0 bytes=78 tx_total=100"}
+{"t":1788218225126,"up":230073,"lv":"INF","c":"arq-fsm","m":"MODE_REQ: peer TX mode 22 -> 12 (my TX mode 12 unchanged)"}
+{"t":1788218233971,"up":238918,"lv":"TMG","c":"arq-timing","m":"data_rx seq=0 bytes=64 snr_local=9.0 rx_total=64 turnaround=16779ms"}
+{"t":1788218241943,"up":246891,"lv":"TMG","c":"arq-timing","m":"data_rx seq=1 bytes=3 snr_local=10.2 rx_total=67 turnaround=24752ms"}
+{"t":1788218247442,"up":252389,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=2 mode=DATAC3 backlog=0 bytes=3 tx_total=103"}
+{"t":1788218255409,"up":260356,"lv":"TMG","c":"arq-timing","m":"disconnect reason=rx_disconnect tx_bytes=103 rx_bytes=67 frames_tx=3 frames_rx=2 retries=0"}
+{"t":1788218259330,"up":264277,"lv":"INF","c":"arq","m":"Disconnected"}

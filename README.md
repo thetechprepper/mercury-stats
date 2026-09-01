@@ -51,10 +51,16 @@ python3 mercury_stats.py /path/to/session.json
 
 ## Session lifecycle
 
-A session starts with the JSON message:
+An outbound session starts with:
 
 ```text
 Command received: CONNECT <local> <peer>
+```
+
+An inbound session starts with:
+
+```text
+Incoming connection from <peer> on <local> (pending)
 ```
 
 `Command received: DISCONNECT` is treated only as a disconnect request.

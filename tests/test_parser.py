@@ -133,5 +133,59 @@ class JsonParserTests(unittest.TestCase):
             path.unlink(missing_ok=True)
 
 
+class ReceiveOnlySessionTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.sessions = parse_file(ROOT / "tests" / "sample_receive.json")
+        cls.session = cls.sessions[0]
+        cls.metrics = calculate_metrics(cls.session)
+
+    def test_receive_session_detected(self):
+        self.assertEqual(len(self.sessions), 1)
+
+    def test_receive_callsigns(self):
+        self.assertEqual(self.session.mycall, "KT7RUN")
+        self.assertEqual(self.session.peer, "KT7RUN-2")
+
+    def test_receive_session_start(self):
+        self.assertEqual(
+            self.session.start,
+            parse_json_timestamp(1788218178229),
+        )
+
+    def test_receive_setup_time(self):
+        self.assertAlmostEqual(self.metrics.setup_seconds, 8.739, places=3)
+
+    def test_receive_session_end(self):
+        self.assertEqual(
+            self.session.end,
+            parse_json_timestamp(1788218259330),
+        )
+        self.assertAlmostEqual(self.session.duration_seconds, 81.101, places=3)
+
+    def test_receive_counters(self):
+        self.assertEqual(self.metrics.tx_bytes, 103)
+        self.assertEqual(self.metrics.rx_bytes, 67)
+        self.assertEqual(self.metrics.total_bytes, 170)
+        self.assertEqual(self.metrics.frames_tx, 3)
+        self.assertEqual(self.metrics.frames_rx, 2)
+        self.assertEqual(self.metrics.retries, 0)
+
+    def test_receive_modes(self):
+        self.assertEqual(self.metrics.connect_mode, "DATAC16")
+        self.assertEqual(
+            self.metrics.payload_transitions,
+            ["DATAC15 → DATAC3"],
+        )
+        self.assertEqual(
+            self.metrics.peer_tx_requested_transitions,
+            ["DATAC15 → DATAC3"],
+        )
+        self.assertEqual(self.metrics.final_tx_mode, "DATAC3")
+
+    def test_receive_result(self):
+        self.assertEqual(self.metrics.result, "DISCONNECTED (rx_disconnect)")
+
+
 if __name__ == "__main__":
     unittest.main()
