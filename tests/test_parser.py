@@ -187,5 +187,31 @@ class ReceiveOnlySessionTests(unittest.TestCase):
         self.assertEqual(self.metrics.result, "DISCONNECTED (rx_disconnect)")
 
 
+class SummaryAfterDisconnectedTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.sessions = parse_file(
+            ROOT / "tests" / "sample_summary_after_disconnect.json"
+        )
+        cls.session = cls.sessions[0]
+        cls.metrics = calculate_metrics(cls.session)
+
+    def test_summary_after_disconnected_is_retained(self):
+        self.assertEqual(len(self.sessions), 1)
+        self.assertEqual(self.metrics.disconnect_reason, "peer_ack")
+        self.assertEqual(self.metrics.result, "DISCONNECTED (peer_ack)")
+        self.assertEqual(self.metrics.tx_bytes, 107)
+        self.assertEqual(self.metrics.rx_bytes, 1718)
+        self.assertEqual(self.metrics.frames_tx, 7)
+        self.assertEqual(self.metrics.frames_rx, 7)
+        self.assertEqual(self.metrics.retries, 1)
+
+    def test_disconnected_timestamp_remains_session_end(self):
+        self.assertEqual(
+            self.session.end,
+            parse_json_timestamp(1788223729345),
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

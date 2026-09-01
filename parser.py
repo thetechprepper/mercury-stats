@@ -168,25 +168,40 @@ def _parse_events(events: Iterable[Event]) -> list[Session]:
         if current is None:
             continue
 
+        # Mercury may emit the authoritative disconnect summary after the
+        # "Disconnected" event. Keep the ended session pending long enough to
+        # consume that summary, but do not attach unrelated post-session events.
+        if current.end is not None:
+            if event.kind == "disconnect_summary":
+                current.events.append(event)
+                if current.result == "UNKNOWN":
+                    current.result = "DISCONNECTED"
+                sessions.append(current)
+                current = None
+            continue
+
         current.events.append(event)
 
         if event.kind == "failure":
             current.result = "FAILED"
 
         # A DISCONNECT command is only a request. The actual session end is
-        # Mercury's "Disconnected" event.
+        # Mercury's "Disconnected" event. If the disconnect summary was
+        # already logged, the session can be finalized immediately. Otherwise
+        # keep it pending in case Mercury logs the summary next.
         if event.kind == "disconnected":
             current.end = event.timestamp
             if current.result == "UNKNOWN":
                 current.result = "DISCONNECTED"
-            sessions.append(current)
-            current = None
+
+            if any(item.kind == "disconnect_summary" for item in current.events):
+                sessions.append(current)
+                current = None
             continue
 
         # Disconnect summary contains authoritative counters/reason, but it
         # does not define the actual end of the session. Mercury may emit the
-        # summary before or after "Disconnected", so only "Disconnected"
-        # terminates the session.
+        # summary before or after "Disconnected".
         if event.kind == "disconnect_summary":
             if current.result == "UNKNOWN":
                 current.result = "DISCONNECTED"

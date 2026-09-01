@@ -1,0 +1,10 @@
+{"t":1788223495821,"up":37152,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN KO0OOO"}
+{"t":1788223515604,"up":56935,"lv":"INF","c":"arq","m":"Connected to KO0OOO"}
+{"t":1788223515604,"up":56935,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}
+{"t":1788223579823,"up":121154,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=0 mode=DATAC15 backlog=50 bytes=22 tx_total=22"}
+{"t":1788223603944,"up":145275,"lv":"INF","c":"arq-fsm","m":"OLLA-state: payload_mode=22 peer_snr=-5.0 local_snr=8.5 olla=+0.0 retries=1 backlog=50 startup_rem=-78340ms"}
+{"t":1788223686181,"up":227512,"lv":"INF","c":"arq-fsm","m":"MODE_REQ: peer TX mode 10 -> 24 (my TX mode 22 unchanged)"}
+{"t":1788223704267,"up":245598,"lv":"TMG","c":"arq-timing","m":"tx_queue seq=5 mode=DATAC15 backlog=0 bytes=3 tx_total=107"}
+{"t":1788223721409,"up":262740,"lv":"TMG","c":"arq-timing","m":"data_rx seq=6 bytes=3 snr_local=10.8 rx_total=1718 turnaround=12584ms"}
+{"t":1788223729345,"up":270676,"lv":"INF","c":"arq","m":"Disconnected"}
+{"t":1788223729345,"up":270676,"lv":"TMG","c":"arq-timing","m":"disconnect reason=peer_ack tx_bytes=107 rx_bytes=1718 frames_tx=7 frames_rx=7 retries=1"}
