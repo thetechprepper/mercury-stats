@@ -110,7 +110,7 @@ class JsonParserTests(unittest.TestCase):
         self.assertEqual(format_bytes(9789), "9789 B (9.56 KiB)")
 
     def test_version(self):
-        self.assertEqual(__version__, "0.2.1")
+        self.assertEqual(__version__, "0.2.2")
 
     def test_legacy_text_is_ignored(self):
         with tempfile.NamedTemporaryFile("w", encoding="utf-8", delete=False) as fh:

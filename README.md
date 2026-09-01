@@ -156,7 +156,7 @@ match the data quantities reported in Mercury timing records such as
 │ 10 │ DATAC1  │ 510 B   │ Payload; +5 dB SNR                   │
 │ 24 │ DATAC17 │ 1180 B  │ Payload; intermediate SNR (~+8 dB)   │
 │ 25 │ QAM16C2 │ 1213 B  │ Payload; high SNR (~+15 dB)          │
-│ 23 │ DATAC16 │ 14 B     │ Control; ARQ control channel         │
+│ 23 │ DATAC16 │ 14 B    │ Control; ARQ control channel         │
 └────┴─────────┴─────────┴──────────────────────────────────────┘
 ```
 
@@ -164,41 +164,11 @@ Source:
 https://github.com/Rhizomatica/mercury/blob/mercuryv2/mercury.1
 
 
-## Version
-
-The application version is defined in one place:
-
-```text
-version.py
-```
-
-Example:
-
-```python
-__version__ = "0.2.1"
-```
-
-Display the installed version with:
-
-```bash
-et-mercury-stats --version
-```
-
-or when running directly from the source tree:
-
-```bash
-python3 mercury_stats.py --version
-```
-
-Output:
-
-```text
-mercury-stats 0.2.1
-```
 
 ## Requirements
 
 - Linux
+- Mercury 1.9.13
 - Python 3.10+
 - Python `curses` module
 
