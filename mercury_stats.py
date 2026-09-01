@@ -136,11 +136,20 @@ def detail_screen(stdscr, session) -> None:
         if metrics.payload_transitions
         else "-"
     )
+    visible_peer_transitions = [
+        transition
+        for transition in metrics.peer_tx_requested_transitions
+        if " → " not in transition
+        or transition.split(" → ", 1)[0] != transition.split(" → ", 1)[1]
+    ]
     peer_transition_text = (
-        " | ".join(metrics.peer_tx_requested_transitions)
-        if metrics.peer_tx_requested_transitions
+        " | ".join(visible_peer_transitions)
+        if visible_peer_transitions
         else "-"
     )
+
+    end_label = "Last event" if metrics.result == "INCOMPLETE" else "End"
+    duration_label = "Observed duration" if metrics.result == "INCOMPLETE" else "Duration"
 
     report_lines = [
         f"{'Peer':<20} {metrics.peer}",
@@ -150,8 +159,8 @@ def detail_screen(stdscr, session) -> None:
             f"{'Connected':<20} "
             f"{display_timestamp(metrics.connected_at, milliseconds=True) if metrics.connected_at else '-'}"
         ),
-        f"{'End':<20} {display_timestamp(session.end, milliseconds=True) if session.end else '-'}",
-        f"{'Duration':<20} {format_duration(metrics.duration_seconds)}",
+        f"{end_label:<20} {display_timestamp(session.end, milliseconds=True) if session.end else '-'}",
+        f"{duration_label:<20} {format_duration(metrics.duration_seconds)}",
         f"{'Connection setup':<20} {format_duration(metrics.setup_seconds)}",
         "",
         f"{'TX bytes':<20} {format_bytes(metrics.tx_bytes)}",

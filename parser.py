@@ -224,15 +224,11 @@ def parse_json_lines(lines: Iterable[str]) -> list[Session]:
 
         try:
             record = json.loads(line)
-        except json.JSONDecodeError as exc:
-            raise MercuryLogError(
-                f"line {line_number}: invalid JSONL ({exc.msg})"
-            ) from exc
+        except json.JSONDecodeError:
+            continue
 
         if not isinstance(record, dict):
-            raise MercuryLogError(
-                f"line {line_number}: expected a JSON object"
-            )
+            continue
 
         timestamp = parse_json_timestamp(record.get("t"))
         message = record.get("m")
@@ -241,13 +237,9 @@ def parse_json_lines(lines: Iterable[str]) -> list[Session]:
         uptime_ms = record.get("up")
 
         if timestamp is None:
-            raise MercuryLogError(
-                f"line {line_number}: missing or invalid Mercury 't' timestamp"
-            )
+            continue
         if not isinstance(message, str):
-            raise MercuryLogError(
-                f"line {line_number}: missing or invalid Mercury 'm' message"
-            )
+            continue
         if not isinstance(component, str):
             component = ""
         if not isinstance(level, str):
@@ -272,5 +264,5 @@ def parse_json_lines(lines: Iterable[str]) -> list[Session]:
 
 def parse_file(path: str | Path) -> list[Session]:
     path = Path(path)
-    with path.open("r", encoding="utf-8", errors="strict") as fh:
+    with path.open("r", encoding="utf-8", errors="replace") as fh:
         return parse_json_lines(fh)

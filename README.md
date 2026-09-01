@@ -175,7 +175,7 @@ version.py
 Example:
 
 ```python
-__version__ = "0.1.0"
+__version__ = "0.2.1"
 ```
 
 Display the installed version with:
@@ -193,7 +193,7 @@ python3 mercury_stats.py --version
 Output:
 
 ```text
-mercury-stats 0.1.0
+mercury-stats 0.2.1
 ```
 
 ## Requirements

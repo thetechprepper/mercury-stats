@@ -110,27 +110,55 @@ class JsonParserTests(unittest.TestCase):
         self.assertEqual(format_bytes(9789), "9789 B (9.56 KiB)")
 
     def test_version(self):
-        self.assertEqual(__version__, "0.1.0")
+        self.assertEqual(__version__, "0.2.1")
 
-    def test_legacy_text_is_rejected(self):
+    def test_legacy_text_is_ignored(self):
         with tempfile.NamedTemporaryFile("w", encoding="utf-8", delete=False) as fh:
             fh.write("11:35:49.509 [+59.596s] [INF] old text log\n")
             path = Path(fh.name)
         try:
-            with self.assertRaises(MercuryLogError):
-                parse_file(path)
+            self.assertEqual(parse_file(path), [])
         finally:
             path.unlink(missing_ok=True)
 
-    def test_malformed_json_is_rejected(self):
+    def test_malformed_json_is_ignored(self):
         with tempfile.NamedTemporaryFile("w", encoding="utf-8", delete=False) as fh:
             fh.write("not-json\n")
             path = Path(fh.name)
         try:
-            with self.assertRaises(MercuryLogError):
-                parse_file(path)
+            self.assertEqual(parse_file(path), [])
         finally:
             path.unlink(missing_ok=True)
+
+    def test_invalid_records_are_ignored(self):
+        lines = [
+            '[]\n',
+            '{"m":"missing timestamp"}\n',
+            '{"t":1788223495821}\n',
+            '{"t":"bad","m":"bad timestamp"}\n',
+        ]
+        from parser import parse_json_lines
+        self.assertEqual(parse_json_lines(lines), [])
+
+    def test_corrupt_line_does_not_invalidate_session(self):
+        lines = [
+            '{"t":1788223495821,"up":37152,"lv":"INF","c":"tcp-ctl","m":"Command received: CONNECT KT7RUN KO0OOO"}\n',
+            '{"t":1788223515604,"up":56935,"lv":"INF","c":"arq","m":"Connected to KO0OOO"}\n',
+            '{"t":1788223515604,"up":56935,"lv":"TMG","c":"arq-timing","m":"connect mode=DATAC16"}\n',
+            '{"t":1788223604998,"up":146329,"lv":"INF","c":"radio","m":"TX enabled (PTT ON)\n',
+            '{"t":1788223729345,"up":270676,"lv":"INF","c":"arq","m":"Disconnected"}\n',
+            '{"t":1788223729345,"up":270676,"lv":"TMG","c":"arq-timing","m":"disconnect reason=peer_ack tx_bytes=107 rx_bytes=1718 frames_tx=7 frames_rx=7 retries=1"}\n',
+        ]
+        from parser import parse_json_lines
+        sessions = parse_json_lines(lines)
+        self.assertEqual(len(sessions), 1)
+        metrics = calculate_metrics(sessions[0])
+        self.assertEqual(metrics.result, "DISCONNECTED (peer_ack)")
+        self.assertEqual(metrics.tx_bytes, 107)
+        self.assertEqual(metrics.rx_bytes, 1718)
+        self.assertEqual(metrics.frames_tx, 7)
+        self.assertEqual(metrics.frames_rx, 7)
+        self.assertEqual(metrics.retries, 1)
 
 
 class ReceiveOnlySessionTests(unittest.TestCase):
