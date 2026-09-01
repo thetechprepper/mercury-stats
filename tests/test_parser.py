@@ -96,7 +96,7 @@ class JsonParserTests(unittest.TestCase):
             (
                 ("22", "DATAC15", "30 B", "Payload; lowest SNR / ladder floor"),
                 ("18", "DATAC4", "54 B", "Payload; low SNR"),
-                ("12", "DATAC3", "126 B", "Payload; default startup mode"),
+                ("12", "DATAC3", "126 B", "Payload; low SNR (~0 dB)"),
                 ("10", "DATAC1", "510 B", "Payload; +5 dB SNR"),
                 ("24", "DATAC17", "1180 B", "Payload; intermediate SNR (~+8 dB)"),
                 ("25", "QAM16C2", "1213 B", "Payload; high SNR (~+15 dB)"),
